@@ -380,7 +380,7 @@ pre [data-theme*=' '] span {
   }
   25% {
     translate: -15px 5px;
-    rotate: -1.5deg;
+    rotate: -2.5deg;
   }
   50% {
     translate: -25px 12px;
@@ -388,7 +388,7 @@ pre [data-theme*=' '] span {
   }
   75% {
     translate: -10px 8px;
-    rotate: -0.5deg;
+    rotate: -2.5deg;
   }
 }
 
@@ -437,15 +437,15 @@ pre [data-theme*=' '] span {
 /* Individual rays ordered left-to-right as rainbow: red → orange → yellow → green → blue */
 .lightray-1 {
   /* Red - leftmost */
-  right: 38%;
-  width: 140px;
+  right: 40%;
+  width: 12vw;
   background: linear-gradient(
     90deg,
     transparent,
-    color-mix(in srgb, var(--lightray-color-1) 50%, transparent),
+    color-mix(in srgb, var(--lightray-color-1) 25%, transparent),
     transparent
   );
-  filter: blur(45px);
+  filter: blur(60px);
   transform: rotate(44deg);
   animation:
     lightray-shimmer 10s ease-in-out infinite,
@@ -456,14 +456,14 @@ pre [data-theme*=' '] span {
 .lightray-2 {
   /* Orange */
   right: 34%;
-  width: 130px;
+  width: 10vw;
   background: linear-gradient(
     90deg,
     transparent,
-    color-mix(in srgb, var(--lightray-color-2) 35%, transparent),
+    color-mix(in srgb, var(--lightray-color-2) 80%, transparent),
     transparent
   );
-  filter: blur(48px);
+  filter: blur(65px);
   transform: rotate(45deg);
   animation:
     lightray-shimmer 11s ease-in-out infinite,
@@ -473,33 +473,33 @@ pre [data-theme*=' '] span {
 
 .lightray-3 {
   /* Yellow */
-  right: 30%;
-  width: 150px;
+  right: 28%;
+  width: 14vw;
   background: linear-gradient(
     90deg,
     transparent,
-    color-mix(in srgb, var(--lightray-color-3) 35%, transparent),
+    color-mix(in srgb, var(--lightray-color-3) 50%, transparent),
     transparent
   );
-  filter: blur(52px);
+  filter: blur(70px);
   transform: rotate(46deg);
   animation:
     lightray-shimmer 12s ease-in-out infinite,
-    lightray-sway 22s ease-in-out infinite;
+    lightray-sway 30s ease-in-out infinite;
   animation-delay: -4s;
 }
 
 .lightray-4 {
   /* Green */
-  right: 26%;
-  width: 135px;
+  right: 22%;
+  width: 11vw;
   background: linear-gradient(
     90deg,
     transparent,
     color-mix(in srgb, var(--lightray-color-4) 35%, transparent),
     transparent
   );
-  filter: blur(50px);
+  filter: blur(65px);
   transform: rotate(47deg);
   animation:
     lightray-shimmer 13s ease-in-out infinite,
@@ -509,15 +509,15 @@ pre [data-theme*=' '] span {
 
 .lightray-5 {
   /* Blue - rightmost */
-  right: 22%;
-  width: 145px;
+  right: 16%;
+  width: 13vw;
   background: linear-gradient(
     90deg,
     transparent,
     color-mix(in srgb, var(--lightray-color-5) 35%, transparent),
     transparent
   );
-  filter: blur(55px);
+  filter: blur(70px);
   transform: rotate(48deg);
   animation:
     lightray-shimmer 14s ease-in-out infinite,
@@ -527,15 +527,15 @@ pre [data-theme*=' '] span {
 
 .lightray-center {
   /* Wide neutral center ray */
-  right: 28%;
-  width: 280px;
+  right: 25%;
+  width: 30vw;
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(255, 255, 250, 0.9),
+    rgba(255, 255, 250, 0.75),
     transparent
   );
-  filter: blur(60px);
+  filter: blur(80px);
   transform: rotate(46deg);
   animation:
     lightray-shimmer 15s ease-in-out infinite,
