@@ -23,7 +23,8 @@ export const textStyles = {
   h3: 'text-[length:var(--font-size-h3)] leading-[var(--line-height-h3)] font-light tracking-tight md:text-[length:var(--font-size-h3-md)]',
   // Body text
   body: 'text-[length:var(--font-size-body)] leading-[var(--line-height-body)]',
-  small: 'text-[length:var(--font-size-small)] leading-[var(--line-height-small)]',
+  small:
+    'text-[length:var(--font-size-small)] leading-[var(--line-height-small)]',
   nav: 'text-[length:var(--font-size-nav)] leading-[var(--line-height-nav)] font-light',
 } as const
 
@@ -86,9 +87,9 @@ export type ProseVariants = VariantProps<typeof prose>
  * Container/layout constants for consistent page structure.
  */
 export const layout = {
-  container: 'mx-auto max-w-4xl px-6 pt-24 pb-16 md:pt-24 md:pb-24',
-  header: 'flex items-center justify-between',
-  headerEnd: 'flex items-center justify-end',
+  container: 'mx-auto max-w-4xl px-6 pt-12 pb-16 md:pt-24 md:pb-24',
+  header: 'flex min-h-12 items-center justify-between',
+  headerEnd: 'flex min-h-12 items-center justify-end',
   headerSpacing: 'mb-16 md:mb-24',
   titleSpacing: 'mb-8 md:mb-10',
   sectionSpacing: 'space-y-8 md:space-y-10',
