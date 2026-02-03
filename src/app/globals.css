@@ -283,16 +283,39 @@ pre [data-theme*=' '] span {
   }
 }
 
-/* Auto-stagger: animates direct children in sequence */
+/*
+ * Auto-stagger: animates direct children in sequence
+ *
+ * IMPORTANT: Set initial state explicitly to prevent FOUC on mobile.
+ * Without this, content flashes visible before animation applies opacity: 0.
+ * The animation-fill-mode: forwards then animates to visible state.
+ */
 [data-animate-stagger] > * {
   --stagger: 0;
-  animation: animate-in 0.4s ease-out both;
+  /* Explicit initial state - prevents flash before animation starts */
+  opacity: 0;
+  filter: blur(4px);
+  transform: translateY(10px);
+  /* Use 'forwards' since initial state is set explicitly above */
+  animation: animate-in 0.4s ease-out forwards;
   animation-delay: calc(var(--stagger) * 60ms);
 }
 
 /* Respect reduced motion preferences */
 @media (prefers-reduced-motion: reduce) {
   [data-animate-stagger] > * {
+    /* Reset to visible state - no animation */
+    opacity: 1;
+    filter: none;
+    transform: none;
     animation: none;
   }
+}
+
+/* Fallback for no-js environments (added via noscript in layout) */
+.no-js [data-animate-stagger] > * {
+  opacity: 1;
+  filter: none;
+  transform: none;
+  animation: none;
 }
