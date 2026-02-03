@@ -1,7 +1,7 @@
 import { cva, type VariantProps } from 'class-variance-authority'
 
 /**
- * Base heading styles for JSX components (pages, MDX components).
+ * Base text styles for JSX components (pages, MDX components).
  *
  * NOTE: Prose heading styles are defined in globals.css as CSS rules.
  * Keep both in sync when making changes!
@@ -11,10 +11,16 @@ import { cva, type VariantProps } from 'class-variance-authority'
  * - h2: xl → 3xl (md)
  * - h3: xl → 2xl (md)
  */
-export const headingStyles = {
+export const textStyles = {
+  // Headings
   h1: 'text-2xl leading-tight font-light tracking-tight md:text-5xl md:leading-tight lg:text-6xl',
   h2: 'text-xl font-light tracking-tight md:text-3xl',
   h3: 'text-xl font-light tracking-tight md:text-2xl',
+  // Body text
+  body: 'text-lg leading-relaxed',
+  small: 'text-lg',
+  caption: 'text-lg',
+  nav: 'text-lg font-light',
 } as const
 
 /**
@@ -29,16 +35,14 @@ export const typography = cva('', {
   variants: {
     variant: {
       // Headings (from shared constants)
-      h1: headingStyles.h1,
-      h2: headingStyles.h2,
-      h3: headingStyles.h3,
-      // Body text
-      body: 'text-lg leading-relaxed',
-      // Small text
-      small: 'text-lg',
-      caption: 'text-lg',
-      // Navigation/UI
-      nav: 'text-lg font-light',
+      h1: textStyles.h1,
+      h2: textStyles.h2,
+      h3: textStyles.h3,
+      // Body text (from shared constants)
+      body: textStyles.body,
+      small: textStyles.small,
+      caption: textStyles.caption,
+      nav: textStyles.nav,
     },
     color: {
       default: 'text-foreground',

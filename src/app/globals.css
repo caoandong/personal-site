@@ -73,7 +73,7 @@ a:hover {
 
 /*
  * Prose heading styles - SINGLE SOURCE OF TRUTH
- * These styles are mirrored in src/lib/typography.ts headingStyles
+ * These styles are mirrored in src/lib/typography.ts textStyles
  * Keep them in sync when making changes!
  */
 .prose h1 {

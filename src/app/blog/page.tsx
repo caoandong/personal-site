@@ -65,7 +65,7 @@ export default function BlogIndex() {
                   key={post.slug}
                   href={`/blog/${post.slug}`}
                   className={cn(
-                    'group -mx-3 flex items-baseline justify-between rounded-md px-3 py-2 transition-colors duration-200 hover:bg-grey-2/10',
+                    'group flex items-baseline justify-between py-2',
                     index !== groupedPosts[year].length - 1 &&
                       'border-b border-stroke'
                   )}

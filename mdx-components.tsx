@@ -1,25 +1,25 @@
 import type { MDXComponents } from 'mdx/types'
 import { cn } from '@/lib/utils'
-import { headingStyles } from '@/lib/typography'
+import { textStyles } from '@/lib/typography'
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     ...components,
 
     // Override default HTML elements for consistent styling
-    // Heading styles derived from shared headingStyles constant
+    // Text styles derived from shared textStyles constant
     h1: ({ children }) => (
-      <h1 className={cn('mt-10 scroll-m-20', headingStyles.h1)}>
+      <h1 className={cn('mt-10 scroll-m-20', textStyles.h1)}>
         {children}
       </h1>
     ),
     h2: ({ children }) => (
-      <h2 className={cn('mt-10 scroll-m-20 first:mt-0', headingStyles.h2)}>
+      <h2 className={cn('mt-10 scroll-m-20 first:mt-0', textStyles.h2)}>
         {children}
       </h2>
     ),
     h3: ({ children }) => (
-      <h3 className={cn('mt-8 scroll-m-20', headingStyles.h3)}>
+      <h3 className={cn('mt-8 scroll-m-20', textStyles.h3)}>
         {children}
       </h3>
     ),
