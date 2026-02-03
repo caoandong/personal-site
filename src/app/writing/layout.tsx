@@ -1,6 +1,6 @@
 import { ThemeToggle } from '@/components/ThemeToggle'
 import { BackButton } from '@/components/BackButton'
-import { AnimateIn } from '@/components/AnimateIn'
+import { Stagger } from '@/components/AnimateIn'
 import { cn } from '@/lib/utils'
 import { layout } from '@/lib/typography'
 
@@ -10,12 +10,12 @@ export default function BlogLayout({
   children: React.ReactNode
 }) {
   return (
-    <div className={layout.container}>
-      <AnimateIn as="header" stagger={0} className={cn(layout.header, layout.headerSpacing)}>
+    <Stagger className={cn(layout.container, layout.sectionSpacing)}>
+      <header className={cn(layout.header)}>
         <BackButton fallback="/" />
         <ThemeToggle />
-      </AnimateIn>
+      </header>
       {children}
-    </div>
+    </Stagger>
   )
 }

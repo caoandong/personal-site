@@ -1,4 +1,4 @@
-import { AnimateIn } from '@/components/AnimateIn'
+import { Stagger } from '@/components/AnimateIn'
 import { prose } from '@/lib/typography'
 
 export default function PostLayout({
@@ -7,8 +7,8 @@ export default function PostLayout({
   children: React.ReactNode
 }) {
   return (
-    <AnimateIn as="article" stagger={1} className={prose()}>
+    <Stagger as="article" className={prose()}>
       {children}
-    </AnimateIn>
+    </Stagger>
   )
 }
