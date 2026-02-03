@@ -49,7 +49,7 @@ export default function Home() {
               Writings
             </h2>
             <Link
-              href="/blog"
+              href="/writing"
               className={cn(
                 typography({ variant: 'nav', color: 'muted' }),
                 hoverTextColors.default,
@@ -79,7 +79,7 @@ export default function Home() {
                   {groupedPosts[year].map((post, index) => (
                     <Link
                       key={post.slug}
-                      href={`/blog/${post.slug}`}
+                      href={`/writing/${post.slug}`}
                       className={cn(
                         'group flex items-baseline justify-between py-2',
                         index !== groupedPosts[year].length - 1 &&

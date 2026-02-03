@@ -32,7 +32,7 @@ export default function BlogIndex() {
               {groupedPosts[year].map((post, index) => (
                 <Link
                   key={post.slug}
-                  href={`/blog/${post.slug}`}
+                  href={`/writing/${post.slug}`}
                   className={cn(
                     'group flex items-baseline justify-between py-2',
                     index !== groupedPosts[year].length - 1 &&
