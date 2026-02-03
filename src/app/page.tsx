@@ -21,12 +21,12 @@ export default function Home() {
   )
 
   return (
-    <Stagger className={cn(layout.container, layout.sectionSpacing)}>
-      <header className={cn(layout.headerEnd)}>
+    <div className={layout.container}>
+      <header className={layout.headerEnd}>
         <ThemeToggle />
       </header>
-
-      <h1 className={typography({ variant: 'h1' })}>Antonio Cao</h1>
+      <Stagger className={layout.sectionSpacing}>
+        <h1 className={typography({ variant: 'h1' })}>Antonio Cao</h1>
 
       <p
         className={cn(
@@ -122,6 +122,7 @@ export default function Home() {
           ))}
         </div>
       </section>
-    </Stagger>
+      </Stagger>
+    </div>
   )
 }

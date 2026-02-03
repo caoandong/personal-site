@@ -87,9 +87,9 @@ export type ProseVariants = VariantProps<typeof prose>
  * Container/layout constants for consistent page structure.
  */
 export const layout = {
-  container: 'mx-auto max-w-4xl px-6 pt-24 pb-16 md:pt-24 md:pb-24',
-  header: 'flex min-h-12 items-center justify-between',
-  headerEnd: 'flex min-h-12 items-center justify-end',
+  container: 'mx-auto max-w-4xl px-6 pb-16 md:pb-24',
+  header: 'flex h-32 items-center justify-between md:h-32',
+  headerEnd: 'flex h-32 items-center justify-end md:h-32',
   headerSpacing: 'mb-16 md:mb-24',
   titleSpacing: 'mb-8 md:mb-10',
   sectionSpacing: 'space-y-8 md:space-y-10',
