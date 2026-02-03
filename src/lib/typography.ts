@@ -31,9 +31,9 @@ export const typography = cva('', {
     weight: {
       light: 'font-light',
       normal: 'font-normal',
-      medium: 'font-medium',
-      semibold: 'font-semibold',
-      bold: 'font-bold',
+      medium: 'font-normal',
+      semibold: 'font-normal',
+      bold: 'font-normal',
     },
   },
   defaultVariants: {
@@ -73,9 +73,9 @@ export type ProseVariants = VariantProps<typeof prose>
 export const proseCustom = [
   // Headings
   'prose-headings:tracking-tight',
-  'prose-h1:text-4xl prose-h1:font-bold prose-h1:mt-10',
-  'prose-h2:text-3xl prose-h2:font-semibold prose-h2:mt-10 prose-h2:border-b prose-h2:pb-2',
-  'prose-h3:text-2xl prose-h3:font-semibold prose-h3:mt-8',
+  'prose-h1:text-4xl prose-h1:font-light prose-h1:mt-10',
+  'prose-h2:text-3xl prose-h2:font-light prose-h2:mt-10 prose-h2:border-b prose-h2:pb-2',
+  'prose-h3:text-2xl prose-h3:font-light prose-h3:mt-8',
   // Paragraphs
   'prose-p:leading-7 prose-p:mt-6',
   // Links

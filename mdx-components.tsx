@@ -6,17 +6,17 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
 
     // Override default HTML elements for consistent styling
     h1: ({ children }) => (
-      <h1 className="mt-10 scroll-m-20 text-4xl font-bold tracking-tight">
+      <h1 className="mt-10 scroll-m-20 text-4xl font-light tracking-tight">
         {children}
       </h1>
     ),
     h2: ({ children }) => (
-      <h2 className="mt-10 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
+      <h2 className="mt-10 scroll-m-20 border-b pb-2 text-3xl font-light tracking-tight first:mt-0">
         {children}
       </h2>
     ),
     h3: ({ children }) => (
-      <h3 className="mt-8 scroll-m-20 text-2xl font-semibold tracking-tight">
+      <h3 className="mt-8 scroll-m-20 text-2xl font-light tracking-tight">
         {children}
       </h3>
     ),
