@@ -281,23 +281,9 @@ pre [data-theme*=' '] span {
 
 /* Auto-stagger: animates direct children in sequence */
 [data-animate-stagger] > * {
+  --stagger: 0;
   animation: animate-in 0.4s ease-out both;
-}
-
-[data-animate-stagger] > *:nth-child(1) { animation-delay: 0ms; }
-[data-animate-stagger] > *:nth-child(2) { animation-delay: 60ms; }
-[data-animate-stagger] > *:nth-child(3) { animation-delay: 120ms; }
-[data-animate-stagger] > *:nth-child(4) { animation-delay: 180ms; }
-[data-animate-stagger] > *:nth-child(5) { animation-delay: 240ms; }
-[data-animate-stagger] > *:nth-child(6) { animation-delay: 300ms; }
-[data-animate-stagger] > *:nth-child(7) { animation-delay: 360ms; }
-[data-animate-stagger] > *:nth-child(8) { animation-delay: 420ms; }
-[data-animate-stagger] > *:nth-child(9) { animation-delay: 480ms; }
-[data-animate-stagger] > *:nth-child(10) { animation-delay: 540ms; }
-
-/* Prose content stagger (for blog posts) */
-.prose[data-animate-stagger] > * {
-  animation: animate-in 0.4s ease-out both;
+  animation-delay: calc(var(--stagger) * 60ms);
 }
 
 /* Respect reduced motion preferences */

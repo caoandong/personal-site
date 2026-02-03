@@ -1,5 +1,7 @@
+'use client'
+
+import { useEffect, useRef, type ElementType, type ReactNode } from 'react'
 import { cn } from '@/lib/utils'
-import { type ElementType, type ReactNode } from 'react'
 
 interface StaggerProps {
   children: ReactNode
@@ -8,8 +10,23 @@ interface StaggerProps {
 }
 
 export function Stagger({ children, className, as: Component = 'div' }: StaggerProps) {
+  const ref = useRef<HTMLElement>(null)
+
+  useEffect(() => {
+    if (!ref.current) return
+
+    const elements = ref.current.children
+    Array.from(elements).forEach((child, index) => {
+      ;(child as HTMLElement).style.setProperty('--stagger', String(index))
+    })
+  }, [])
+
   return (
-    <Component data-animate-stagger="" className={cn(className)}>
+    <Component
+      ref={ref}
+      data-animate-stagger=""
+      className={cn(className)}
+    >
       {children}
     </Component>
   )
