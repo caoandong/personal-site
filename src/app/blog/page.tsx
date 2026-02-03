@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
 import { typography, layout } from '@/lib/typography'
+import { borderColors, groupHoverTextColors, colorTransitions } from '@/lib/colors'
 
 interface Post {
   slug: string
@@ -67,13 +68,14 @@ export default function BlogIndex() {
                   className={cn(
                     'group flex items-baseline justify-between py-2',
                     index !== groupedPosts[year].length - 1 &&
-                      'border-b border-stroke'
+                      `border-b ${borderColors.stroke}`
                   )}
                 >
                   <span
                     className={cn(
                       typography({ variant: 'body' }),
-                      'group-hover:text-grey-1 transition-colors duration-200'
+                      groupHoverTextColors.subtle,
+                      colorTransitions.default
                     )}
                   >
                     {post.title}

@@ -2,6 +2,7 @@
 
 import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
+import { borderColors, bgColors, hoverBgColors, colorTransitions } from '@/lib/colors'
 
 export function ThemeToggle() {
   const [mounted, setMounted] = useState(false)
@@ -15,7 +16,7 @@ export function ThemeToggle() {
   if (!mounted) {
     return (
       <button
-        className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border bg-background text-base font-medium transition-colors hover:bg-muted"
+        className={`inline-flex h-9 w-9 items-center justify-center rounded-md border ${borderColors.default} ${bgColors.default} text-base font-medium ${colorTransitions.default} ${hoverBgColors.muted}`}
         aria-label="Toggle theme"
       >
         <span className="sr-only">Toggle theme</span>
@@ -28,7 +29,7 @@ export function ThemeToggle() {
   return (
     <button
       onClick={() => setTheme(isDark ? 'light' : 'dark')}
-      className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border bg-background text-base font-medium transition-colors hover:bg-muted"
+      className={`inline-flex h-9 w-9 items-center justify-center rounded-md border ${borderColors.default} ${bgColors.default} text-base font-medium ${colorTransitions.default} ${hoverBgColors.muted}`}
       aria-label={`Switch to ${isDark ? 'light' : 'dark'} theme`}
     >
       {isDark ? (

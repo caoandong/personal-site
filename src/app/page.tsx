@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { ThemeToggle } from '@/components/ThemeToggle'
 import { cn } from '@/lib/utils'
 import { typography, layout } from '@/lib/typography'
+import { hoverTextColors, colorTransitions } from '@/lib/colors'
 
 export default function Home() {
   return (
@@ -28,7 +29,8 @@ export default function Home() {
             href="/blog"
             className={cn(
               typography({ variant: 'nav' }),
-              'hover:text-foreground transition-colors duration-200'
+              hoverTextColors.default,
+              colorTransitions.default
             )}
           >
             Read the blog &rarr;

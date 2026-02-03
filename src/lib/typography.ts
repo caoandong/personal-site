@@ -1,4 +1,5 @@
 import { cva, type VariantProps } from 'class-variance-authority'
+import { textColors } from './colors'
 
 /**
  * Typography utilities that reference @theme tokens from globals.css
@@ -45,9 +46,9 @@ export const typography = cva('', {
       nav: textStyles.nav,
     },
     color: {
-      default: 'text-foreground',
-      muted: 'text-grey-2',
-      subtle: 'text-grey-1',
+      default: textColors.default,
+      muted: textColors.muted,
+      subtle: textColors.subtle,
     },
     weight: {
       light: 'font-light',

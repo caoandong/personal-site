@@ -2,6 +2,7 @@
 
 import { cn } from '@/lib/utils'
 import { typography } from '@/lib/typography'
+import { hoverTextColors, colorTransitions } from '@/lib/colors'
 import { useNavigation } from './NavigationProvider'
 
 interface BackButtonProps {
@@ -18,7 +19,9 @@ export function BackButton({ fallback = '/', className, children }: BackButtonPr
       onClick={() => goBack(fallback)}
       className={cn(
         typography({ variant: 'nav', color: 'muted' }),
-        'hover:text-foreground transition-colors duration-200 cursor-pointer',
+        hoverTextColors.default,
+        colorTransitions.default,
+        'cursor-pointer',
         className
       )}
     >
