@@ -11,7 +11,11 @@ interface BackButtonProps {
   children?: React.ReactNode
 }
 
-export function BackButton({ fallback = '/', className, children }: BackButtonProps) {
+export function BackButton({
+  fallback = '/',
+  className,
+  children,
+}: BackButtonProps) {
   const { goBack } = useNavigation()
 
   return (
@@ -21,11 +25,16 @@ export function BackButton({ fallback = '/', className, children }: BackButtonPr
         typography({ variant: 'nav', color: 'muted' }),
         hoverTextColors.default,
         colorTransitions.default,
-        'cursor-pointer',
+        'flex cursor-pointer items-center gap-2',
         className
       )}
     >
-      {children ?? <>&larr; Back</>}
+      {children ?? (
+        <>
+          <span>←</span>
+          <span>Back</span>
+        </>
+      )}
     </button>
   )
 }

@@ -80,7 +80,7 @@
   --line-height-h3: 1.4;
 
   /* Body text */
-  --font-size-body: 1.125rem; /* 18px - text-lg */
+  --font-size-body: 1.25rem; /* 20px - text-xl */
   --line-height-body: 1.625; /* leading-relaxed */
 
   /* Code text (slightly smaller than body for visual consistency with monospace) */
