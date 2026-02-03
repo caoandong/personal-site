@@ -92,7 +92,7 @@ export const layout = {
   headerEnd: 'flex h-32 items-center justify-end mb-8 md:mb-8',
   headerSpacing: 'mb-16 md:mb-24',
   titleSpacing: 'mb-8 md:mb-10',
-  sectionSpacing: 'space-y-8 md:space-y-10',
+  sectionSpacing: 'space-y-8 md:space-y-18',
 } as const
 
 export type LayoutKey = keyof typeof layout
