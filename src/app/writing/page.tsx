@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
-import { typography, layout } from '@/lib/typography'
+import { typography } from '@/lib/typography'
 import { borderColors, groupHoverTextColors, colorTransitions } from '@/lib/colors'
 import { posts, groupPostsByYear, formatDate } from '@/lib/posts'
 
@@ -27,7 +27,7 @@ export default function BlogIndex() {
   )
 
   return (
-    <main className={layout.sectionSpacing}>
+    <>
       <h1 className={typography({ variant: 'h1' })}>Writing</h1>
 
       <div className="space-y-6">
@@ -78,6 +78,6 @@ export default function BlogIndex() {
           </div>
         ))}
       </div>
-    </main>
+    </>
   )
 }

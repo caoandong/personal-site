@@ -4,7 +4,7 @@
 @plugin '@tailwindcss/typography';
 
 :root {
-  --background: #ffffff;
+  --background: #fafafa; /* neutral-50 */
   --foreground: #0a0a0a;
   --heading: #171717; /* neutral-900 */
   --body: #404040; /* neutral-700 */
@@ -241,6 +241,10 @@ pre {
   background-color: var(--muted);
 }
 
+.dark pre {
+  background-color: #141414;
+}
+
 pre > code {
   display: grid;
 }
@@ -263,4 +267,32 @@ pre [data-theme*=' '] span {
   overflow-x: auto;
   overflow-y: hidden;
   padding: 1rem 0;
+}
+
+/* Page entrance animations */
+@keyframes animate-in {
+  from {
+    opacity: 0;
+    filter: blur(4px);
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+}
+
+/* Auto-stagger: animates direct children in sequence */
+[data-animate-stagger] > * {
+  --stagger: 0;
+  animation: animate-in 0.4s ease-out both;
+  animation-delay: calc(var(--stagger) * 60ms);
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  [data-animate-stagger] > * {
+    animation: none;
+  }
 }

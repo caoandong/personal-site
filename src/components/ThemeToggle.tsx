@@ -2,21 +2,37 @@
 
 import { useTheme } from 'next-themes'
 import { useSyncExternalStore } from 'react'
-import { borderColors, bgColors, hoverBgColors, colorTransitions } from '@/lib/colors'
+import {
+  borderColors,
+  bgColors,
+  hoverBgColors,
+  colorTransitions,
+} from '@/lib/colors'
+import { cn } from '@/lib/utils'
 
 const emptySubscribe = () => () => {}
 const getSnapshot = () => true
 const getServerSnapshot = () => false
 
 export function ThemeToggle() {
-  const mounted = useSyncExternalStore(emptySubscribe, getSnapshot, getServerSnapshot)
+  const mounted = useSyncExternalStore(
+    emptySubscribe,
+    getSnapshot,
+    getServerSnapshot
+  )
   const { setTheme, resolvedTheme } = useTheme()
 
   // Prevent hydration mismatch by rendering a placeholder during SSR
   if (!mounted) {
     return (
       <button
-        className={`inline-flex h-9 w-9 items-center justify-center rounded-md border ${borderColors.default} ${bgColors.default} text-base font-medium ${colorTransitions.default} ${hoverBgColors.muted}`}
+        className={cn(
+          'inline-flex h-9 w-9 items-center justify-center rounded-md border text-base font-medium',
+          borderColors.default,
+          bgColors.default,
+          colorTransitions.default,
+          hoverBgColors.muted
+        )}
         aria-label="Toggle theme"
       >
         <span className="sr-only">Toggle theme</span>
@@ -29,7 +45,13 @@ export function ThemeToggle() {
   return (
     <button
       onClick={() => setTheme(isDark ? 'light' : 'dark')}
-      className={`inline-flex h-9 w-9 items-center justify-center rounded-md border ${borderColors.default} ${bgColors.default} text-base font-medium ${colorTransitions.default} ${hoverBgColors.muted}`}
+      className={cn(
+        'inline-flex h-9 w-9 cursor-pointer items-center justify-center rounded-md border text-base font-medium opacity-50',
+        borderColors.default,
+        bgColors.default,
+        colorTransitions.default,
+        hoverBgColors.muted
+      )}
       aria-label={`Switch to ${isDark ? 'light' : 'dark'} theme`}
     >
       {isDark ? (
