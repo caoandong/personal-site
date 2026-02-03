@@ -8,7 +8,10 @@
   --foreground: #0a0a0a;
   --muted: #f4f4f5;
   --muted-foreground: #71717a;
+  --grey-1: #52525b;
+  --grey-2: #a1a1aa;
   --border: #e4e4e7;
+  --stroke: #e4e4e7;
   --primary: #18181b;
   --primary-foreground: #fafafa;
 }
@@ -18,7 +21,10 @@
   --foreground: #fafafa;
   --muted: #27272a;
   --muted-foreground: #a1a1aa;
+  --grey-1: #a1a1aa;
+  --grey-2: #71717a;
   --border: #27272a;
+  --stroke: #27272a;
   --primary: #fafafa;
   --primary-foreground: #18181b;
 }
@@ -28,7 +34,10 @@
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
+  --color-grey-1: var(--grey-1);
+  --color-grey-2: var(--grey-2);
   --color-border: var(--border);
+  --color-stroke: var(--stroke);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
 }
@@ -36,6 +45,16 @@
 body {
   background: var(--background);
   color: var(--foreground);
+  font-weight: 300;
+}
+
+/* Smooth transitions for interactive elements */
+a {
+  transition: color 200ms ease;
+}
+
+a:hover {
+  color: var(--grey-1);
 }
 
 /* Prose styling for MDX content */
@@ -46,6 +65,24 @@ body {
   --tw-prose-bold: var(--foreground);
   --tw-prose-code: var(--foreground);
   --tw-prose-quotes: var(--foreground);
+  --tw-prose-counters: var(--grey-1);
+  --tw-prose-bullets: var(--grey-1);
+  --tw-prose-hr: var(--stroke);
+  --tw-prose-quote-borders: var(--stroke);
+}
+
+/* Ensure prose links don't inherit global hover */
+.prose a:hover {
+  color: var(--grey-1);
+}
+
+/* Inline code styling */
+.prose code:not(pre code) {
+  background-color: var(--muted);
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.25rem;
+  font-size: 0.875em;
+  font-weight: 500;
 }
 
 pre {

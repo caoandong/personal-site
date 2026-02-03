@@ -1,65 +1,36 @@
-import Link from 'next/link'
-import { ThemeToggle } from '@/components/ThemeToggle'
+import Link from "next/link";
+import { ThemeToggle } from "@/components/ThemeToggle";
+import { cn } from "@/lib/utils";
+import { typography, layout } from "@/lib/typography";
 
 export default function Home() {
   return (
-    <div className="mx-auto max-w-3xl px-4 py-8">
-      <header className="flex items-center justify-end mb-24">
+    <div className={layout.container}>
+      <header className={cn(layout.headerEnd, layout.headerSpacing)}>
         <ThemeToggle />
       </header>
 
-      <main className="space-y-8">
-        <h1 className="text-4xl font-bold tracking-tight">
+      <main className="space-y-8 md:space-y-10">
+        <h1 className={cn(typography({ variant: "h1" }), "md:leading-tight")}>
           Personal Blog
         </h1>
 
-        <p className="text-lg text-muted-foreground leading-relaxed max-w-xl">
+        <p className={cn(typography({ variant: "body", color: "muted" }), "max-w-2xl")}>
           A minimalistic blog exploring mathematics, design engineering, and
-          interactive visualizations. Built with Next.js, MDX, and full LaTeX support.
+          interactive visualizations.
         </p>
 
-        <nav className="flex gap-6 pt-4">
+        <nav className="flex gap-8 pt-4">
           <Link
             href="/blog"
-            className="text-lg font-medium underline underline-offset-4 hover:no-underline"
+            className={cn(typography({ variant: "nav" }), "hover:text-foreground transition-colors duration-200")}
           >
             Read the blog &rarr;
           </Link>
         </nav>
       </main>
 
-      <footer className="mt-24 pt-8 border-t text-sm text-muted-foreground">
-        <p>
-          Built with{' '}
-          <a
-            href="https://nextjs.org"
-            className="underline underline-offset-4 hover:no-underline"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Next.js
-          </a>
-          ,{' '}
-          <a
-            href="https://mdxjs.com"
-            className="underline underline-offset-4 hover:no-underline"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            MDX
-          </a>
-          , and{' '}
-          <a
-            href="https://katex.org"
-            className="underline underline-offset-4 hover:no-underline"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            KaTeX
-          </a>
-          .
-        </p>
-      </footer>
+      <footer className={cn("mt-40 md:mt-64 pt-10 border-t border-stroke", typography({ variant: "small", color: "muted" }))}></footer>
     </div>
-  )
+  );
 }

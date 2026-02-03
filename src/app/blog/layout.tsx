@@ -1,5 +1,7 @@
 import { ThemeToggle } from '@/components/ThemeToggle'
 import Link from 'next/link'
+import { cn } from '@/lib/utils'
+import { typography, layout, prose, proseCustom } from '@/lib/typography'
 
 export default function BlogLayout({
   children,
@@ -7,17 +9,17 @@ export default function BlogLayout({
   children: React.ReactNode
 }) {
   return (
-    <div className="mx-auto max-w-3xl px-4 py-8">
-      <header className="mb-12 flex items-center justify-between">
+    <div className={layout.container}>
+      <header className={cn(layout.header, layout.headerSpacing)}>
         <Link
           href="/"
-          className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+          className={cn(typography({ variant: 'nav', color: 'muted' }), 'hover:text-foreground transition-colors duration-200')}
         >
           &larr; Home
         </Link>
         <ThemeToggle />
       </header>
-      <article className="prose prose-neutral dark:prose-invert max-w-none">
+      <article className={cn(prose(), proseCustom)}>
         {children}
       </article>
     </div>

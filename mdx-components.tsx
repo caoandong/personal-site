@@ -35,7 +35,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     a: ({ href, children }) => (
       <a
         href={href}
-        className="font-medium underline underline-offset-4 hover:no-underline"
+        className="font-medium"
       >
         {children}
       </a>

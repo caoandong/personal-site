@@ -1,5 +1,6 @@
 import Link from 'next/link'
-import { ThemeToggle } from '@/components/ThemeToggle'
+import { cn } from '@/lib/utils'
+import { typography } from '@/lib/typography'
 
 const posts = [
   {
@@ -12,38 +13,30 @@ const posts = [
 
 export default function BlogIndex() {
   return (
-    <div className="mx-auto max-w-3xl px-4 py-8">
-      <header className="mb-12 flex items-center justify-between">
-        <Link
-          href="/"
-          className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-        >
-          &larr; Home
-        </Link>
-        <ThemeToggle />
-      </header>
+    <>
+      <h1 className={cn(typography({ variant: 'h1' }), 'mb-16 md:mb-24')}>
+        Blog
+      </h1>
 
-      <h1 className="text-4xl font-bold tracking-tight mb-8">Blog</h1>
-
-      <div className="space-y-8">
+      <div className="space-y-10 md:space-y-12 not-prose">
         {posts.map((post) => (
-          <article key={post.slug} className="group">
+          <article key={post.slug} className="group border-b border-stroke pb-10 md:pb-12 last:border-b-0">
             <Link href={`/blog/${post.slug}`} className="block">
-              <time className="text-sm text-muted-foreground">
+              <time className={typography({ variant: 'small', color: 'muted' })}>
                 {new Date(post.date).toLocaleDateString('en-US', {
                   year: 'numeric',
                   month: 'long',
                   day: 'numeric',
                 })}
               </time>
-              <h2 className="text-xl font-semibold mt-1 group-hover:underline">
+              <h2 className={cn(typography({ variant: 'h2' }), 'mt-2 group-hover:text-grey-1 transition-colors duration-200')}>
                 {post.title}
               </h2>
-              <p className="text-muted-foreground mt-2">{post.description}</p>
+              <p className={cn(typography({ variant: 'body', color: 'muted' }), 'mt-3 max-w-2xl')}>{post.description}</p>
             </Link>
           </article>
         ))}
       </div>
-    </div>
+    </>
   )
 }
