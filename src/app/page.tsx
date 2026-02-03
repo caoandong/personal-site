@@ -110,7 +110,7 @@ export default function Home() {
                       <span
                         className={cn(
                           typography({ variant: 'small', color: 'muted' }),
-                          'ml-4 shrink-0'
+                          'ml-4 hidden shrink-0 md:inline'
                         )}
                       >
                         {formatDate(post.date)}
