@@ -27,7 +27,7 @@ export function ThemeToggle() {
     return (
       <button
         className={cn(
-          "inline-flex h-9 w-9 items-center justify-center rounded-md border text-base font-medium",
+          'inline-flex h-9 w-9 items-center justify-center rounded-md border text-base font-medium',
           borderColors.default,
           bgColors.default,
           colorTransitions.default,
@@ -46,7 +46,7 @@ export function ThemeToggle() {
     <button
       onClick={() => setTheme(isDark ? 'light' : 'dark')}
       className={cn(
-        "inline-flex h-9 w-9 items-center justify-center rounded-md border text-base font-medium",
+        'inline-flex h-9 w-9 cursor-pointer items-center justify-center rounded-md border text-base font-medium opacity-50',
         borderColors.default,
         bgColors.default,
         colorTransitions.default,

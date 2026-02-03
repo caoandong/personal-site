@@ -4,7 +4,7 @@
 @plugin '@tailwindcss/typography';
 
 :root {
-  --background: #ffffff;
+  --background: #fafafa; /* neutral-50 */
   --foreground: #0a0a0a;
   --heading: #171717; /* neutral-900 */
   --body: #404040; /* neutral-700 */
@@ -239,6 +239,10 @@ pre {
   font-size: var(--font-size-code);
   line-height: 1.7;
   background-color: var(--muted);
+}
+
+.dark pre {
+  background-color: #141414;
 }
 
 pre > code {
