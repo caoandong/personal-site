@@ -12,16 +12,16 @@ export const typography = cva('', {
   variants: {
     variant: {
       // Headings
-      h1: 'text-2xl md:text-5xl lg:text-6xl font-light tracking-tight leading-tight',
-      h2: 'text-xl md:text-2xl font-light',
-      h3: 'text-lg md:text-xl font-light',
+      h1: 'text-2xl leading-tight font-light tracking-tight md:text-5xl md:leading-tight lg:text-6xl',
+      h2: 'text-xl font-light md:text-2xl',
+      h3: 'text-lg font-light md:text-xl',
       // Body text
-      body: 'leading-relaxed',
+      body: 'text-lg leading-relaxed',
       // Small text
-      small: 'text-sm',
-      caption: 'text-xs',
+      small: 'text-lg',
+      caption: 'text-lg',
       // Navigation/UI
-      nav: 'font-light',
+      nav: 'text-lg font-light',
     },
     color: {
       default: 'text-foreground',
@@ -90,10 +90,14 @@ export const proseCustom = [
  * Container/layout constants for consistent page structure.
  */
 export const layout = {
-  container: 'mx-auto max-w-4xl px-6 pt-24 pb-16 md:pt-40 md:pb-24',
+  container: 'mx-auto max-w-4xl px-6 pt-24 pb-16 md:pt-24 md:pb-24',
   header: 'flex items-center justify-between',
   headerEnd: 'flex items-center justify-end',
   headerSpacing: 'mb-16 md:mb-24',
+  /** Spacing below page title (h1) */
+  titleSpacing: 'mb-8 md:mb-10',
+  /** Spacing between content sections */
+  sectionSpacing: 'space-y-8 md:space-y-10',
 } as const
 
 export type LayoutKey = keyof typeof layout
