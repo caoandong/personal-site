@@ -1,8 +1,24 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
 import { typography, layout } from '@/lib/typography'
 import { borderColors, groupHoverTextColors, colorTransitions } from '@/lib/colors'
 import { posts, groupPostsByYear, formatDate } from '@/lib/posts'
+
+export const metadata: Metadata = {
+  title: 'Writing - Antonio Cao',
+  description: 'Essays and articles by Antonio Cao on technology, design, and the intersection of formulas and form.',
+  openGraph: {
+    title: 'Writing - Antonio Cao',
+    description: 'Essays and articles by Antonio Cao on technology, design, and the intersection of formulas and form.',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary',
+    title: 'Writing - Antonio Cao',
+    description: 'Essays and articles by Antonio Cao on technology, design, and the intersection of formulas and form.',
+  },
+}
 
 export default function BlogIndex() {
   const groupedPosts = groupPostsByYear(posts)

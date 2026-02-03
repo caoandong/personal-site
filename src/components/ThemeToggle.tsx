@@ -1,16 +1,16 @@
 'use client'
 
 import { useTheme } from 'next-themes'
-import { useEffect, useState } from 'react'
+import { useSyncExternalStore } from 'react'
 import { borderColors, bgColors, hoverBgColors, colorTransitions } from '@/lib/colors'
 
-export function ThemeToggle() {
-  const [mounted, setMounted] = useState(false)
-  const { theme, setTheme, resolvedTheme } = useTheme()
+const emptySubscribe = () => () => {}
+const getSnapshot = () => true
+const getServerSnapshot = () => false
 
-  useEffect(() => {
-    setMounted(true)
-  }, [])
+export function ThemeToggle() {
+  const mounted = useSyncExternalStore(emptySubscribe, getSnapshot, getServerSnapshot)
+  const { setTheme, resolvedTheme } = useTheme()
 
   // Prevent hydration mismatch by rendering a placeholder during SSR
   if (!mounted) {
