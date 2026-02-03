@@ -532,7 +532,7 @@ pre [data-theme*=' '] span {
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(255, 255, 250, 0.75),
+    rgba(255, 255, 250, 0.5),
     transparent
   );
   filter: blur(80px);
