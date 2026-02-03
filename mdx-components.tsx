@@ -14,7 +14,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       </h1>
     ),
     h2: ({ children }) => (
-      <h2 className={cn('mt-10 scroll-m-20 border-b pb-2 first:mt-0', headingStyles.h2)}>
+      <h2 className={cn('mt-10 scroll-m-20 first:mt-0', headingStyles.h2)}>
         {children}
       </h2>
     ),

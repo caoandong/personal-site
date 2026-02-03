@@ -1,13 +1,20 @@
 import { cva, type VariantProps } from 'class-variance-authority'
 
 /**
- * Base heading styles - single source of truth for all heading typography.
- * Used by both the typography CVA and prose customizations.
+ * Base heading styles for JSX components (pages, MDX components).
+ *
+ * NOTE: Prose heading styles are defined in globals.css as CSS rules.
+ * Keep both in sync when making changes!
+ *
+ * Mobile-first responsive sizing:
+ * - h1: 2xl → 5xl (md) → 6xl (lg)
+ * - h2: xl → 3xl (md)
+ * - h3: xl → 2xl (md)
  */
 export const headingStyles = {
   h1: 'text-2xl leading-tight font-light tracking-tight md:text-5xl md:leading-tight lg:text-6xl',
   h2: 'text-xl font-light tracking-tight md:text-3xl',
-  h3: 'text-lg font-light tracking-tight md:text-xl',
+  h3: 'text-xl font-light tracking-tight md:text-2xl',
 } as const
 
 /**
@@ -77,34 +84,11 @@ export const prose = cva(
 export type ProseVariants = VariantProps<typeof prose>
 
 /**
- * Converts a heading style string to prose-prefixed classes.
- * e.g., "text-2xl font-light md:text-5xl" → "prose-h1:text-2xl prose-h1:font-light md:prose-h1:text-5xl"
- */
-function toProseHeading(tag: 'h1' | 'h2' | 'h3', styles: string): string {
-  return styles
-    .split(' ')
-    .map((cls) => {
-      // Handle responsive prefixes (md:, lg:, etc.)
-      const match = cls.match(/^([a-z]+:)?(.+)$/)
-      if (match) {
-        const [, prefix = '', utility] = match
-        return `${prefix}prose-${tag}:${utility}`
-      }
-      return `prose-${tag}:${cls}`
-    })
-    .join(' ')
-}
-
-/**
- * Prose customizations for headings, paragraphs, etc.
+ * Prose customizations for non-heading elements.
+ * Heading styles are defined in globals.css as the single source of truth.
  * Combine with the `prose` variant for full article styling.
- * Heading styles are derived from headingStyles for consistency.
  */
 export const proseCustom = [
-  // Headings (derived from headingStyles)
-  `${toProseHeading('h1', headingStyles.h1)} prose-h1:mt-10`,
-  `${toProseHeading('h2', headingStyles.h2)} prose-h2:mt-10 prose-h2:border-b prose-h2:pb-2`,
-  `${toProseHeading('h3', headingStyles.h3)} prose-h3:mt-8`,
   // Paragraphs
   'prose-p:leading-7 prose-p:mt-6',
   // Links

@@ -71,6 +71,51 @@ a:hover {
   --tw-prose-quote-borders: var(--stroke);
 }
 
+/*
+ * Prose heading styles - SINGLE SOURCE OF TRUTH
+ * These styles are mirrored in src/lib/typography.ts headingStyles
+ * Keep them in sync when making changes!
+ */
+.prose h1 {
+  font-size: var(--text-2xl);
+  line-height: var(--leading-tight);
+  font-weight: 300;
+  letter-spacing: var(--tracking-tight);
+  margin-top: var(--spacing-10);
+}
+
+.prose h2 {
+  font-size: var(--text-xl);
+  font-weight: 300;
+  letter-spacing: var(--tracking-tight);
+  margin-top: var(--spacing-10);
+}
+
+.prose h3 {
+  font-size: var(--text-xl);
+  font-weight: 300;
+  letter-spacing: var(--tracking-tight);
+  margin-top: var(--spacing-8);
+}
+
+@media (min-width: 768px) {
+  .prose h1 {
+    font-size: var(--text-5xl);
+  }
+  .prose h2 {
+    font-size: var(--text-3xl);
+  }
+  .prose h3 {
+    font-size: var(--text-2xl);
+  }
+}
+
+@media (min-width: 1024px) {
+  .prose h1 {
+    font-size: var(--text-6xl);
+  }
+}
+
 /* Ensure prose links don't inherit global hover */
 .prose a:hover {
   color: var(--grey-1);
