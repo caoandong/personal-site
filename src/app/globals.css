@@ -264,3 +264,34 @@ pre [data-theme*=' '] span {
   overflow-y: hidden;
   padding: 1rem 0;
 }
+
+/* Page entrance animations */
+@keyframes animate-in {
+  from {
+    opacity: 0;
+    filter: blur(4px);
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+}
+
+[data-animate] {
+  --stagger: 0;
+  --delay: 60ms;
+  animation: animate-in 0.4s ease-out both;
+  animation-delay: calc(var(--stagger) * var(--delay));
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  [data-animate] {
+    animation: none;
+    opacity: 1;
+    filter: none;
+    transform: none;
+  }
+}

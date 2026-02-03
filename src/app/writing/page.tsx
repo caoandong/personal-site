@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { AnimateIn } from '@/components/AnimateIn'
 import { cn } from '@/lib/utils'
 import { typography, layout } from '@/lib/typography'
 import { borderColors, groupHoverTextColors, colorTransitions } from '@/lib/colors'
@@ -28,9 +29,11 @@ export default function BlogIndex() {
 
   return (
     <main className={layout.sectionSpacing}>
-      <h1 className={typography({ variant: 'h1' })}>Writing</h1>
+      <AnimateIn stagger={1}>
+        <h1 className={typography({ variant: 'h1' })}>Writing</h1>
+      </AnimateIn>
 
-      <div className="space-y-6">
+      <AnimateIn stagger={2} className="space-y-6">
         {sortedYears.map((year) => (
           <div
             key={year}
@@ -77,7 +80,7 @@ export default function BlogIndex() {
             </div>
           </div>
         ))}
-      </div>
+      </AnimateIn>
     </main>
   )
 }

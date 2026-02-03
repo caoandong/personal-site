@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { ThemeToggle } from '@/components/ThemeToggle'
+import { AnimateIn } from '@/components/AnimateIn'
 import { cn } from '@/lib/utils'
 import { typography, layout } from '@/lib/typography'
 import {
@@ -21,37 +22,41 @@ export default function Home() {
 
   return (
     <div className={layout.container}>
-      <header className={cn(layout.headerEnd, layout.headerSpacing)}>
+      <AnimateIn as="header" stagger={0} className={cn(layout.headerEnd, layout.headerSpacing)}>
         <ThemeToggle />
-      </header>
+      </AnimateIn>
 
       <main className={layout.sectionSpacing}>
-        <h1 className={typography({ variant: 'h1' })}>Antonio Cao</h1>
+        <AnimateIn stagger={1}>
+          <h1 className={typography({ variant: 'h1' })}>Antonio Cao</h1>
+        </AnimateIn>
 
-        <p
-          className={cn(
-            typography({ variant: 'body', color: 'default' }),
-            'max-w-2xl'
-          )}
-        >
-          Co-founder of{' '}
-          <a
-            href="https://flair.ai"
-            target="_blank"
-            rel="noopener noreferrer"
+        <AnimateIn stagger={2}>
+          <p
             className={cn(
-              hoverTextColors.default,
-              colorTransitions.default,
-              'underline underline-offset-2'
+              typography({ variant: 'body', color: 'default' }),
+              'max-w-2xl'
             )}
           >
-            flair.ai
-          </a>
-          . Exploring the space where functions become form.
-        </p>
+            Co-founder of{' '}
+            <a
+              href="https://flair.ai"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={cn(
+                hoverTextColors.default,
+                colorTransitions.default,
+                'underline underline-offset-2'
+              )}
+            >
+              flair.ai
+            </a>
+            . Exploring the space where functions become form.
+          </p>
+        </AnimateIn>
 
         <section className="pt-8">
-          <div className="mb-6 flex items-baseline justify-between">
+          <AnimateIn stagger={3} className="mb-6 flex items-baseline justify-between">
             <h2
               className={typography({
                 variant: 'h3',
@@ -71,9 +76,9 @@ export default function Home() {
               <span>View all</span>
               <span className="ml-4">→</span>
             </Link>
-          </div>
+          </AnimateIn>
 
-          <div className="space-y-6">
+          <AnimateIn stagger={4} className="space-y-6">
             {sortedYears.map((year) => (
               <div
                 key={year}
@@ -120,7 +125,7 @@ export default function Home() {
                 </div>
               </div>
             ))}
-          </div>
+          </AnimateIn>
         </section>
       </main>
     </div>
