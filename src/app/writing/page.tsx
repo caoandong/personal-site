@@ -34,7 +34,7 @@ export default function BlogIndex() {
         {sortedYears.map((year) => (
           <div
             key={year}
-            className="grid grid-cols-[4rem_1fr] gap-x-4 md:grid-cols-[5rem_1fr] md:gap-x-6"
+            className="grid grid-cols-[4rem_1fr] gap-x-4 md:grid-cols-[5rem_1fr] md:gap-x-6 lg:grid-cols-[1fr_2fr]"
           >
             <span
               className={cn(
