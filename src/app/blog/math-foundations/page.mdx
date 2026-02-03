@@ -1,0 +1,90 @@
+# Mathematical Foundations
+
+This post demonstrates **full LaTeX rendering** in MDX, showcasing both inline and block mathematics.
+
+## Inline Mathematics
+
+Einstein's famous equation $E = mc^2$ relates energy to mass. The quadratic formula $x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$ solves any quadratic equation.
+
+## Block Mathematics
+
+The Gaussian integral is one of the most beautiful results in mathematics:
+
+$$
+\int_{-\infty}^{\infty} e^{-x^2} \, dx = \sqrt{\pi}
+$$
+
+### The Euler Identity
+
+Perhaps the most elegant equation in all of mathematics:
+
+$$
+e^{i\pi} + 1 = 0
+$$
+
+This single equation connects five fundamental constants: $e$, $i$, $\pi$, $1$, and $0$.
+
+### Fourier Transform
+
+The Fourier transform decomposes a function into its constituent frequencies:
+
+$$
+\hat{f}(\xi) = \int_{-\infty}^{\infty} f(x) e^{-2\pi i x \xi} \, dx
+$$
+
+### Maxwell's Equations
+
+The four Maxwell equations in differential form:
+
+$$
+\begin{aligned}
+\nabla \cdot \mathbf{E} &= \frac{\rho}{\varepsilon_0} \\
+\nabla \cdot \mathbf{B} &= 0 \\
+\nabla \times \mathbf{E} &= -\frac{\partial \mathbf{B}}{\partial t} \\
+\nabla \times \mathbf{B} &= \mu_0 \mathbf{J} + \mu_0 \varepsilon_0 \frac{\partial \mathbf{E}}{\partial t}
+\end{aligned}
+$$
+
+### Matrices and Linear Algebra
+
+A rotation matrix in 2D:
+
+$$
+R(\theta) = \begin{pmatrix}
+\cos\theta & -\sin\theta \\
+\sin\theta & \cos\theta
+\end{pmatrix}
+$$
+
+### Summations and Products
+
+The Basel problem:
+
+$$
+\sum_{n=1}^{\infty} \frac{1}{n^2} = \frac{\pi^2}{6}
+$$
+
+Euler's product formula for the Riemann zeta function:
+
+$$
+\zeta(s) = \sum_{n=1}^{\infty} \frac{1}{n^s} = \prod_{p \text{ prime}} \frac{1}{1 - p^{-s}}
+$$
+
+## Code Example
+
+Here's how you might compute the Gaussian integral numerically in Python:
+
+```python
+import numpy as np
+from scipy import integrate
+
+def gaussian(x):
+    return np.exp(-x**2)
+
+result, error = integrate.quad(gaussian, -np.inf, np.inf)
+print(f"Result: {result:.10f}")  # Should be close to sqrt(pi) ≈ 1.7724538509
+```
+
+## Conclusion
+
+LaTeX rendering in MDX enables writing rich mathematical content with beautiful typography, perfect for technical blogs, documentation, and educational materials.
