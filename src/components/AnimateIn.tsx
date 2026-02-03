@@ -15,9 +15,21 @@ export function Stagger({ children, className, as: Component = 'div' }: StaggerP
   useEffect(() => {
     if (!ref.current) return
 
-    const elements = ref.current.children
-    Array.from(elements).forEach((child, index) => {
-      ;(child as HTMLElement).style.setProperty('--stagger', String(index))
+    const elements = Array.from(ref.current.children) as HTMLElement[]
+    let staggerIndex = 0
+
+    elements.forEach((child) => {
+      const rect = child.getBoundingClientRect()
+
+      // Element is above viewport (already scrolled past) - show instantly
+      if (rect.bottom <= 0) {
+        child.style.animation = 'none'
+        return
+      }
+
+      // Element is in or below viewport - apply stagger
+      child.style.setProperty('--stagger', String(staggerIndex))
+      staggerIndex++
     })
   }, [])
 
