@@ -2,7 +2,12 @@ import Link from 'next/link'
 import { ThemeToggle } from '@/components/ThemeToggle'
 import { cn } from '@/lib/utils'
 import { typography, layout } from '@/lib/typography'
-import { hoverTextColors, borderColors, groupHoverTextColors, colorTransitions } from '@/lib/colors'
+import {
+  hoverTextColors,
+  borderColors,
+  groupHoverTextColors,
+  colorTransitions,
+} from '@/lib/colors'
 import { getRecentPosts, groupPostsByYear, formatDate } from '@/lib/posts'
 
 const RECENT_POSTS_LIMIT = 5
@@ -25,7 +30,7 @@ export default function Home() {
 
         <p
           className={cn(
-            typography({ variant: 'body', color: 'muted' }),
+            typography({ variant: 'body', color: 'default' }),
             'max-w-2xl'
           )}
         >
@@ -34,7 +39,27 @@ export default function Home() {
         </p>
 
         <section className="pt-8">
-          <h2 className={cn(typography({ variant: 'h2' }), 'mb-4')}>Writing</h2>
+          <div className="mb-6 flex items-baseline justify-between">
+            <h2
+              className={typography({
+                variant: 'h2',
+                color: 'muted',
+              })}
+            >
+              Writings
+            </h2>
+            <Link
+              href="/blog"
+              className={cn(
+                typography({ variant: 'nav', color: 'muted' }),
+                hoverTextColors.default,
+                colorTransitions.default
+              )}
+            >
+              <span>View all</span>
+              <span className="ml-4">→</span>
+            </Link>
+          </div>
 
           <div className="space-y-6">
             {sortedYears.map((year) => (
@@ -84,19 +109,6 @@ export default function Home() {
               </div>
             ))}
           </div>
-
-          <nav className="flex gap-8 pt-6">
-            <Link
-              href="/blog"
-              className={cn(
-                typography({ variant: 'nav' }),
-                hoverTextColors.default,
-                colorTransitions.default
-              )}
-            >
-              View all posts &rarr;
-            </Link>
-          </nav>
         </section>
       </main>
     </div>
