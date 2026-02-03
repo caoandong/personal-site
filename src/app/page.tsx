@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { ThemeToggle } from '@/components/ThemeToggle'
 import { Stagger } from '@/components/AnimateIn'
+import { LightRay } from '@/components/LightRay'
 import { cn } from '@/lib/utils'
 import { typography, layout } from '@/lib/typography'
 import {
@@ -21,8 +22,10 @@ export default function Home() {
   )
 
   return (
-    <Stagger className={cn(layout.container, layout.sectionSpacing)}>
-      <header className={cn(layout.headerEnd)}>
+    <>
+      <LightRay />
+      <Stagger className={cn(layout.container, layout.sectionSpacing)}>
+        <header className={cn(layout.headerEnd)}>
         <ThemeToggle />
       </header>
 
@@ -121,7 +124,8 @@ export default function Home() {
             </div>
           ))}
         </div>
-      </section>
-    </Stagger>
+        </section>
+      </Stagger>
+    </>
   )
 }
