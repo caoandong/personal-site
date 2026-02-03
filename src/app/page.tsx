@@ -39,11 +39,15 @@ export default function Home() {
             href="https://flair.ai"
             target="_blank"
             rel="noopener noreferrer"
-            className={cn(hoverTextColors.default, colorTransitions.default, 'underline underline-offset-2')}
+            className={cn(
+              hoverTextColors.default,
+              colorTransitions.default,
+              'underline underline-offset-2'
+            )}
           >
             flair.ai
           </a>
-          . Exploring the space where formulas become form.
+          . Exploring the space where functions become form.
         </p>
 
         <section className="pt-8">

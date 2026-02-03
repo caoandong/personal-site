@@ -7,16 +7,19 @@ import './globals.css'
 
 export const metadata: Metadata = {
   title: 'Antonio Cao',
-  description: 'Co-founder of flair.ai. Exploring the space where formulas become form.',
+  description:
+    'Co-founder of flair.ai. Exploring the space where functions become form.',
   openGraph: {
     title: 'Antonio Cao',
-    description: 'Co-founder of flair.ai. Exploring the space where formulas become form.',
+    description:
+      'Co-founder of flair.ai. Exploring the space where functions become form.',
     type: 'website',
   },
   twitter: {
     card: 'summary',
     title: 'Antonio Cao',
-    description: 'Co-founder of flair.ai. Exploring the space where formulas become form.',
+    description:
+      'Co-founder of flair.ai. Exploring the space where functions become form.',
   },
 }
 
@@ -31,7 +34,7 @@ export default function RootLayout({
         className={cn(
           fontSans.variable,
           fontMono.variable,
-          'min-h-screen bg-background font-sans antialiased'
+          'bg-background min-h-screen font-sans antialiased'
         )}
       >
         <ThemeProvider
