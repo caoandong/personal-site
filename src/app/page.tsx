@@ -42,7 +42,7 @@ export default function Home() {
           <div className="mb-6 flex items-baseline justify-between">
             <h2
               className={typography({
-                variant: 'h2',
+                variant: 'h3',
                 color: 'muted',
               })}
             >
