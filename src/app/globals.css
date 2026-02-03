@@ -16,6 +16,22 @@
   --stroke: #e4e4e7;
   --primary: #18181b;
   --primary-foreground: #fafafa;
+
+  /* Lightray Configuration */
+  --lightray-opacity: 1;
+  --lightray-blur: 40px;
+  --lightray-width: 120px;
+  --lightray-angle: 45deg;
+  --lightray-shimmer-duration: 8s;
+  --lightray-sway-duration: 15s;
+
+  /* Rainbow colors - TESTING with high visibility */
+  --lightray-color-1: rgba(255, 80, 80, 1);
+  --lightray-color-2: rgba(255, 160, 60, 1);
+  --lightray-color-3: rgba(255, 230, 80, 1);
+  --lightray-color-4: rgba(80, 255, 130, 1);
+  --lightray-color-5: rgba(80, 160, 255, 1);
+  --lightray-color-6: rgba(160, 80, 255, 1);
 }
 
 .dark {
@@ -31,6 +47,21 @@
   --stroke: #27272a;
   --primary: #fafafa;
   --primary-foreground: #18181b;
+
+  /* Lightray - more visible on dark backgrounds */
+  --lightray-opacity: 1;
+  --lightray-blur: 40px;
+  --lightray-width: 120px;
+  --lightray-shimmer-duration: 8s;
+  --lightray-sway-duration: 15s;
+
+  /* Rainbow colors - TESTING with high visibility */
+  --lightray-color-1: rgba(255, 80, 80, 1);
+  --lightray-color-2: rgba(255, 160, 60, 1);
+  --lightray-color-3: rgba(255, 230, 80, 1);
+  --lightray-color-4: rgba(80, 255, 130, 1);
+  --lightray-color-5: rgba(80, 160, 255, 1);
+  --lightray-color-6: rgba(160, 80, 255, 1);
 }
 
 /*
@@ -318,4 +349,162 @@ pre [data-theme*=' '] span {
   filter: none;
   transform: none;
   animation: none;
+}
+
+/* ==========================================================================
+   Lightray Effect
+   ========================================================================== */
+
+/* Keyframe animations */
+@keyframes lightray-shimmer {
+  0%, 100% { opacity: var(--lightray-opacity); }
+  30% { opacity: calc(var(--lightray-opacity) * 0.3); }
+  60% { opacity: calc(var(--lightray-opacity) * 0.7); }
+  80% { opacity: calc(var(--lightray-opacity) * 0.4); }
+}
+
+@keyframes lightray-sway {
+  0%, 100% { translate: 0 0; rotate: 0deg; }
+  25% { translate: -15px 5px; rotate: -1.5deg; }
+  50% { translate: -25px 12px; rotate: 1deg; }
+  75% { translate: -10px 8px; rotate: -0.5deg; }
+}
+
+@keyframes lightray-rainbow-shift {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+/* Lightray container */
+.lightray-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+/* Base ray styling - shared properties */
+.lightray {
+  position: absolute;
+  top: -10%;
+  height: 140%;
+  transform-origin: top center;
+  mix-blend-mode: screen;
+  /* Radial fade for natural light falloff */
+  mask-image: radial-gradient(
+    ellipse 50% 60% at 50% 0%,
+    black 0%,
+    rgba(0,0,0,0.5) 30%,
+    rgba(0,0,0,0.15) 60%,
+    transparent 100%
+  );
+  -webkit-mask-image: radial-gradient(
+    ellipse 50% 60% at 50% 0%,
+    black 0%,
+    rgba(0,0,0,0.5) 30%,
+    rgba(0,0,0,0.15) 60%,
+    transparent 100%
+  );
+}
+
+/* Individual rays ordered left-to-right as rainbow: red → orange → yellow → green → blue */
+.lightray-1 {
+  /* Red - leftmost */
+  right: 12%;
+  width: 90px;
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--lightray-color-1) 35%, transparent), transparent);
+  filter: blur(35px);
+  transform: rotate(44deg);
+  animation:
+    lightray-shimmer 10s ease-in-out infinite,
+    lightray-sway 18s ease-in-out infinite;
+  animation-delay: 0s;
+}
+
+.lightray-2 {
+  /* Orange */
+  right: 10%;
+  width: 80px;
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--lightray-color-2) 35%, transparent), transparent);
+  filter: blur(38px);
+  transform: rotate(45deg);
+  animation:
+    lightray-shimmer 11s ease-in-out infinite,
+    lightray-sway 20s ease-in-out infinite;
+  animation-delay: -2s;
+}
+
+.lightray-3 {
+  /* Yellow */
+  right: 8%;
+  width: 100px;
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--lightray-color-3) 35%, transparent), transparent);
+  filter: blur(42px);
+  transform: rotate(46deg);
+  animation:
+    lightray-shimmer 12s ease-in-out infinite,
+    lightray-sway 22s ease-in-out infinite;
+  animation-delay: -4s;
+}
+
+.lightray-4 {
+  /* Green */
+  right: 6%;
+  width: 85px;
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--lightray-color-4) 35%, transparent), transparent);
+  filter: blur(40px);
+  transform: rotate(47deg);
+  animation:
+    lightray-shimmer 13s ease-in-out infinite,
+    lightray-sway 19s ease-in-out infinite;
+  animation-delay: -6s;
+}
+
+.lightray-5 {
+  /* Blue - rightmost */
+  right: 4%;
+  width: 95px;
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--lightray-color-5) 35%, transparent), transparent);
+  filter: blur(45px);
+  transform: rotate(48deg);
+  animation:
+    lightray-shimmer 14s ease-in-out infinite,
+    lightray-sway 21s ease-in-out infinite;
+  animation-delay: -8s;
+}
+
+.lightray-center {
+  /* Wide neutral center ray */
+  right: 6%;
+  width: 180px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 250, 0.9), transparent);
+  filter: blur(50px);
+  transform: rotate(46deg);
+  animation:
+    lightray-shimmer 15s ease-in-out infinite,
+    lightray-sway 24s ease-in-out infinite;
+  animation-delay: -5s;
+}
+
+/* Reduced motion: static ray */
+@media (prefers-reduced-motion: reduce) {
+  .lightray {
+    animation: none;
+    opacity: var(--lightray-opacity);
+  }
+  .lightray-rainbow {
+    animation: none;
+  }
+}
+
+/* Mobile: reduce blur for performance */
+@media (max-width: 768px) {
+  .lightray-container {
+    --lightray-blur: 40px;
+    --lightray-opacity: 0.1;
+  }
+  .dark .lightray-container {
+    --lightray-opacity: 0.15;
+  }
 }
