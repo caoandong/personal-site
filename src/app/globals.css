@@ -119,7 +119,7 @@ a {
 }
 
 a:hover {
-  color: var(--grey-1);
+  color: var(--heading);
 }
 
 /* Prose styling for MDX content */
@@ -217,7 +217,7 @@ a:hover {
 
 /* Ensure prose links don't inherit global hover */
 .prose a:hover {
-  color: var(--grey-1);
+  color: var(--heading);
 }
 
 /* Inline code styling */

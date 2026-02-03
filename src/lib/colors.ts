@@ -144,7 +144,7 @@ export type HoverBgColor = keyof typeof hoverBgColors
  * Group hover state classes for parent-triggered hover effects.
  */
 export const groupHoverTextColors = {
-  subtle: 'group-hover:text-grey-1',
+  subtle: 'group-hover:text-heading',
   default: 'group-hover:text-heading',
 } as const
 
