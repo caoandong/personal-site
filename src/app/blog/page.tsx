@@ -2,39 +2,7 @@ import Link from 'next/link'
 import { cn } from '@/lib/utils'
 import { typography, layout } from '@/lib/typography'
 import { borderColors, groupHoverTextColors, colorTransitions } from '@/lib/colors'
-
-interface Post {
-  slug: string
-  title: string
-  date: string
-}
-
-const posts: Post[] = [
-  {
-    slug: 'math-foundations',
-    title: 'Mathematical Foundations',
-    date: '2025-02-02',
-  },
-]
-
-function groupPostsByYear(posts: Post[]): Record<string, Post[]> {
-  return posts.reduce(
-    (acc, post) => {
-      const year = new Date(post.date).getFullYear().toString()
-      if (!acc[year]) acc[year] = []
-      acc[year].push(post)
-      return acc
-    },
-    {} as Record<string, Post[]>
-  )
-}
-
-function formatDate(dateString: string): string {
-  const date = new Date(dateString)
-  const month = String(date.getMonth() + 1).padStart(2, '0')
-  const day = String(date.getDate()).padStart(2, '0')
-  return `${month}/${day}`
-}
+import { posts, groupPostsByYear, formatDate } from '@/lib/posts'
 
 export default function BlogIndex() {
   const groupedPosts = groupPostsByYear(posts)
