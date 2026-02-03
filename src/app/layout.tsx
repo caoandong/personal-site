@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { fontSans, fontMono } from '@/lib/fonts'
 import { cn } from '@/lib/utils'
 import { ThemeProvider } from '@/components/ThemeProvider'
+import { NavigationProvider } from '@/components/NavigationProvider'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -29,9 +30,11 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className="relative flex min-h-screen flex-col">
-            <main className="flex-1">{children}</main>
-          </div>
+          <NavigationProvider>
+            <div className="relative flex min-h-screen flex-col">
+              <main className="flex-1">{children}</main>
+            </div>
+          </NavigationProvider>
         </ThemeProvider>
       </body>
     </html>

@@ -1,7 +1,7 @@
 import { ThemeToggle } from '@/components/ThemeToggle'
 import { BackButton } from '@/components/BackButton'
 import { cn } from '@/lib/utils'
-import { layout, prose, proseCustom } from '@/lib/typography'
+import { layout } from '@/lib/typography'
 
 export default function BlogLayout({
   children,
@@ -14,9 +14,7 @@ export default function BlogLayout({
         <BackButton fallback="/" />
         <ThemeToggle />
       </header>
-      <article className={cn(prose(), proseCustom)}>
-        {children}
-      </article>
+      {children}
     </div>
   )
 }

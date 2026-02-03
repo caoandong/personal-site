@@ -42,7 +42,7 @@ export default function BlogIndex() {
   )
 
   return (
-    <div className={cn(layout.sectionSpacing, 'not-prose')}>
+    <main className={layout.sectionSpacing}>
       <h1 className={typography({ variant: 'h1' })}>Writing</h1>
 
       <div className="space-y-6">
@@ -92,6 +92,6 @@ export default function BlogIndex() {
           </div>
         ))}
       </div>
-    </div>
+    </main>
   )
 }

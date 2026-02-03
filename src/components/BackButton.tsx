@@ -1,9 +1,8 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
-import { useCallback } from 'react'
 import { cn } from '@/lib/utils'
 import { typography } from '@/lib/typography'
+import { useNavigation } from './NavigationProvider'
 
 interface BackButtonProps {
   fallback?: string
@@ -12,21 +11,11 @@ interface BackButtonProps {
 }
 
 export function BackButton({ fallback = '/', className, children }: BackButtonProps) {
-  const router = useRouter()
-
-  const handleBack = useCallback(() => {
-    // Check if there's history to go back to
-    // window.history.state.idx tracks the position in Next.js history stack
-    if (typeof window !== 'undefined' && window.history.state?.idx > 0) {
-      router.back()
-    } else {
-      router.push(fallback)
-    }
-  }, [router, fallback])
+  const { goBack } = useNavigation()
 
   return (
     <button
-      onClick={handleBack}
+      onClick={() => goBack(fallback)}
       className={cn(
         typography({ variant: 'nav', color: 'muted' }),
         'hover:text-foreground transition-colors duration-200 cursor-pointer',

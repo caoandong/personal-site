@@ -1,15 +1,17 @@
 import createMDX from '@next/mdx'
+import path from 'path'
+import { fileURLToPath } from 'url'
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
   turbopack: {
-    root: '/Users/antonio/flair/software/personal-site',
+    root: __dirname,
   },
 }
 
-// With Turbopack, plugins must be passed as strings (not imported functions)
-// This allows the plugins to be serialized and passed to Rust
 const withMDX = createMDX({
   options: {
     remarkPlugins: [
@@ -18,6 +20,15 @@ const withMDX = createMDX({
     ],
     rehypePlugins: [
       'rehype-katex',
+      // rehype-pretty-code with serializable options for Turbopack compatibility
+      ['rehype-pretty-code', {
+        theme: {
+          dark: 'github-dark-dimmed',
+          light: 'github-light',
+        },
+        keepBackground: true,
+        defaultLang: 'plaintext',
+      }],
     ],
   },
 })
