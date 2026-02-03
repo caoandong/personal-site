@@ -22,6 +22,10 @@ export const colorTokens = {
   background: 'background',
   foreground: 'foreground',
 
+  // Text hierarchy (heading vs body)
+  heading: 'heading', // Headings, bold text - higher contrast
+  body: 'body', // Paragraph text - slightly muted
+
   // Muted (subdued backgrounds and text)
   muted: 'muted',
   mutedForeground: 'muted-foreground',
@@ -54,12 +58,16 @@ export type ColorToken = (typeof colorTokens)[keyof typeof colorTokens]
  * Use these for all text styling to ensure consistency.
  *
  * Hierarchy:
- * - default: Primary text, highest contrast
+ * - heading: Headings, bold text - highest contrast
+ * - body: Paragraph text - slightly muted for comfortable reading
+ * - default: Alias for body (backwards compat)
  * - muted: Secondary text, reduced emphasis
  * - subtle: Tertiary text, lowest emphasis (hover states, metadata)
  */
 export const textColors = {
-  default: 'text-foreground',
+  heading: 'text-heading',
+  body: 'text-body',
+  default: 'text-body', // Default text is body color
   muted: 'text-grey-2',
   subtle: 'text-grey-1',
   mutedForeground: 'text-muted-foreground',
@@ -115,7 +123,7 @@ export type BorderColorClass = (typeof borderColors)[BorderColor]
  * Hover state color classes for interactive elements.
  */
 export const hoverTextColors = {
-  default: 'hover:text-foreground',
+  default: 'hover:text-heading',
   subtle: 'hover:text-grey-1',
   muted: 'hover:text-grey-2',
 } as const
@@ -137,7 +145,7 @@ export type HoverBgColor = keyof typeof hoverBgColors
  */
 export const groupHoverTextColors = {
   subtle: 'group-hover:text-grey-1',
-  default: 'group-hover:text-foreground',
+  default: 'group-hover:text-heading',
 } as const
 
 export type GroupHoverTextColor = keyof typeof groupHoverTextColors

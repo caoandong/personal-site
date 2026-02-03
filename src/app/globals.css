@@ -83,6 +83,9 @@
   --font-size-body: 1.125rem; /* 18px - text-lg */
   --line-height-body: 1.625; /* leading-relaxed */
 
+  /* Code text (slightly smaller than body for visual consistency with monospace) */
+  --font-size-code: 0.975rem; /* ~15.6px */
+
   /* Small/caption text */
   --font-size-small: 1.125rem; /* 18px - text-lg */
   --line-height-small: 1.5;
@@ -222,7 +225,7 @@ a:hover {
   background-color: var(--muted);
   padding: 0.2rem 0.4rem;
   border-radius: 0.25rem;
-  font-size: 0.875em;
+  font-size: var(--font-size-code);
   font-weight: 500;
 }
 
@@ -233,7 +236,7 @@ pre {
   margin-top: 2.5rem;
   margin-bottom: 2.5rem;
   overflow-x: auto;
-  font-size: var(--font-size-body);
+  font-size: var(--font-size-code);
   line-height: 1.7;
   background-color: var(--muted);
 }
