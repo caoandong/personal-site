@@ -8,32 +8,34 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
 
     // Override default HTML elements for consistent styling
     // Text styles derived from shared textStyles constant
+    // Heading spacing handled by globals.css with adjacent sibling selectors
+    // (* + h2) so first headings get no top margin automatically
     h1: ({ children }) => (
-      <h1 className={cn('mt-10 scroll-m-20', textStyles.h1)}>
+      <h1 className={cn('mb-8 scroll-m-20', textStyles.h1)}>
         {children}
       </h1>
     ),
     h2: ({ children }) => (
-      <h2 className={cn('mt-10 scroll-m-20 first:mt-0', textStyles.h2)}>
+      <h2 className={cn('mb-6 scroll-m-20', textStyles.h2)}>
         {children}
       </h2>
     ),
     h3: ({ children }) => (
-      <h3 className={cn('mt-8 scroll-m-20', textStyles.h3)}>
+      <h3 className={cn('mb-4 scroll-m-20', textStyles.h3)}>
         {children}
       </h3>
     ),
     p: ({ children }) => (
-      <p className="leading-7 [&:not(:first-child)]:mt-6">{children}</p>
+      <p className="leading-relaxed my-6">{children}</p>
     ),
     ul: ({ children }) => (
-      <ul className="my-6 ml-6 list-disc [&>li]:mt-2">{children}</ul>
+      <ul className="my-8 ml-6 list-disc [&>li]:mt-3">{children}</ul>
     ),
     ol: ({ children }) => (
-      <ol className="my-6 ml-6 list-decimal [&>li]:mt-2">{children}</ol>
+      <ol className="my-8 ml-6 list-decimal [&>li]:mt-3">{children}</ol>
     ),
     blockquote: ({ children }) => (
-      <blockquote className="mt-6 border-l-2 pl-6 italic">{children}</blockquote>
+      <blockquote className="my-8 border-l-2 pl-6 italic">{children}</blockquote>
     ),
     a: ({ href, children }) => (
       <a

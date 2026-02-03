@@ -73,29 +73,42 @@ a:hover {
 
 /*
  * Prose heading styles - SINGLE SOURCE OF TRUTH
- * These styles are mirrored in src/lib/typography.ts textStyles
- * Keep them in sync when making changes!
+ * Uses adjacent sibling selectors (* + h2) so first headings get no top margin.
+ * Keep in sync with mdx-components.tsx and typography.ts proseCustom!
+ *
+ * SPACING VALUES:
+ * - h2: mt-20 (5rem) when not first, mb-6 (1.5rem)
+ * - h3: mt-14 (3.5rem) when not first, mb-4 (1rem)
  */
 .prose h1 {
   font-size: var(--text-2xl);
   line-height: var(--leading-tight);
   font-weight: 300;
   letter-spacing: var(--tracking-tight);
-  margin-top: var(--spacing-10);
+  margin-bottom: var(--spacing-8);
 }
 
 .prose h2 {
   font-size: var(--text-xl);
   font-weight: 300;
   letter-spacing: var(--tracking-tight);
-  margin-top: var(--spacing-10);
+  margin-bottom: var(--spacing-6);
 }
 
 .prose h3 {
   font-size: var(--text-xl);
   font-weight: 300;
   letter-spacing: var(--tracking-tight);
-  margin-top: var(--spacing-8);
+  margin-bottom: var(--spacing-4);
+}
+
+/* Section spacing - only apply top margin when heading follows other content */
+.prose > * + h2 {
+  margin-top: var(--spacing-20);
+}
+
+.prose > * + h3 {
+  margin-top: var(--spacing-14);
 }
 
 @media (min-width: 768px) {

@@ -89,18 +89,25 @@ export type ProseVariants = VariantProps<typeof prose>
 
 /**
  * Prose customizations for non-heading elements.
+ *
+ * SPACING VALUES (keep in sync with globals.css and mdx-components.tsx):
+ * - Headings: h1 mt-12/mb-6, h2 mt-16/mb-4, h3 mt-12/mb-3
+ * - Paragraphs: leading-relaxed (1.625), my-6
+ * - Lists: my-8, list items mt-3
+ * - Blockquotes: my-8
+ *
  * Heading styles are defined in globals.css as the single source of truth.
  * Combine with the `prose` variant for full article styling.
  */
 export const proseCustom = [
-  // Paragraphs
-  'prose-p:leading-7 prose-p:mt-6',
+  // Paragraphs - line-height 1.625 (leading-relaxed) for optimal long-form readability
+  'prose-p:leading-relaxed prose-p:my-6',
   // Links
   'prose-a:text-foreground prose-a:no-underline hover:prose-a:text-grey-1',
-  // Lists
-  'prose-ul:my-6 prose-ol:my-6 prose-li:mt-2',
-  // Blockquotes
-  'prose-blockquote:mt-6 prose-blockquote:border-l-2 prose-blockquote:pl-6',
+  // Lists - generous spacing for visual breathing room
+  'prose-ul:my-8 prose-ol:my-8 prose-li:mt-3',
+  // Blockquotes - clear visual separation
+  'prose-blockquote:my-8 prose-blockquote:border-l-2 prose-blockquote:pl-6',
 ].join(' ')
 
 /**
