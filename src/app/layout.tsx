@@ -6,8 +6,18 @@ import { NavigationProvider } from '@/components/NavigationProvider'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Personal Blog',
-  description: 'A minimalistic personal blog with MDX, LaTeX, and interactive components',
+  title: 'Antonio Cao',
+  description: 'Co-founder of flair.ai. Exploring the space where formulas become form.',
+  openGraph: {
+    title: 'Antonio Cao',
+    description: 'Co-founder of flair.ai. Exploring the space where formulas become form.',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary',
+    title: 'Antonio Cao',
+    description: 'Co-founder of flair.ai. Exploring the space where formulas become form.',
+  },
 }
 
 export default function RootLayout({

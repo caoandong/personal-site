@@ -26,7 +26,7 @@ export default function Home() {
       </header>
 
       <main className={layout.sectionSpacing}>
-        <h1 className={typography({ variant: 'h1' })}>Personal Blog</h1>
+        <h1 className={typography({ variant: 'h1' })}>Antonio Cao</h1>
 
         <p
           className={cn(
@@ -34,8 +34,16 @@ export default function Home() {
             'max-w-2xl'
           )}
         >
-          A minimalistic blog exploring mathematics, design engineering, and
-          interactive visualizations.
+          Co-founder of{' '}
+          <a
+            href="https://flair.ai"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={cn(hoverTextColors.default, colorTransitions.default, 'underline underline-offset-2')}
+          >
+            flair.ai
+          </a>
+          . Exploring the space where formulas become form.
         </p>
 
         <section className="pt-8">

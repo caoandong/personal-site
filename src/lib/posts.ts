@@ -6,8 +6,8 @@ export interface Post {
 
 export const posts: Post[] = [
   {
-    slug: 'math-foundations',
-    title: 'Mathematical Foundations',
+    slug: 'testing-code-latex-markdown',
+    title: 'Testing code and latex with markdown',
     date: '2025-02-02',
   },
 ]
