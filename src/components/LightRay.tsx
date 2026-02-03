@@ -7,7 +7,7 @@
  */
 export function LightRay() {
   return (
-    <div className="lightray-container opacity-50" aria-hidden="true">
+    <div className="lightray-container" aria-hidden="true">
       <div className="lightray lightray-1" />
       <div className="lightray lightray-2" />
       <div className="lightray lightray-center" />
