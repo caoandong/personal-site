@@ -55,7 +55,7 @@ export default function Home() {
                 color: 'muted',
               })}
             >
-              Writings
+              Writing
             </h2>
             <Link
               href="/writing"
@@ -66,7 +66,7 @@ export default function Home() {
               )}
             >
               <span>View all</span>
-              <span className="ml-4">→</span>
+              <span className="ml-2">→</span>
             </Link>
           </div>
 
