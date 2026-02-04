@@ -47,7 +47,7 @@ export default function Home() {
           </h1>
         </div>
 
-        <section className="pt-8">
+        <section className="pt-12">
           <div className="mb-6 flex items-baseline justify-between">
             <h2
               className={typography({
