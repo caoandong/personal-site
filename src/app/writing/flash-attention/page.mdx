@@ -1,0 +1,21 @@
+# Flash attention
+
+motivation:
+
+standard QKV attention mechanism
+
+$$
+\text{softmax}\left(Q K^T / \sqrt{d} \right)
+$$
+
+in code
+
+```python
+
+
+
+
+```
+
+key insight: fusing the matrix multiplication and softmax operations into a single kernel.
+
