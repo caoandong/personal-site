@@ -1,0 +1,84 @@
+# Particle Lenia
+
+Lenia is a continuous generalization of Conway's Game of Life, created by Bert Wang-Chak Chan in 2015. While the original Game of Life operates on discrete cells with binary states, Lenia extends this to continuous space and continuous states, producing strikingly lifelike emergent behaviors.
+
+## From Cells to Particles
+
+Traditional Lenia uses a field-based approach with partial differential equations. Particle Lenia takes a different path: instead of evolving a continuous field, it represents matter as a population of particles that self-organize through local energy minimization.
+
+Each particle moves according to a simple rule:
+
+$$
+\frac{dp_i}{dt} = -\nabla E(p_i)
+$$
+
+Particles travel against the gradient of an energy field — they roll downhill in the energy landscape.
+
+## The Energy Landscape
+
+The energy field $E$ that guides particle motion combines three components:
+
+**Lenia Field $U$**: Computed by summing Gaussian kernels centered at each particle position. If particle $j$ is at position $p_j$, its contribution to the field at point $x$ is:
+
+$$
+K(|x - p_j|) = e^{-|x - p_j|^2 / \sigma^2}
+$$
+
+**Growth Field $G$**: Applies a Gaussian function to $U$ values, defining regions where particles are attracted:
+
+$$
+G(u) = e^{-(u - \mu)^2 / \sigma_g^2}
+$$
+
+This selects for favorable concentration ranges — not too sparse, not too dense.
+
+**Repulsion Field $R$**: Prevents particle overlap with short-range repulsive forces.
+
+The total energy combines these as $E = R - G$. Particles independently follow the negative gradient of this field.
+
+## Greedy Local Optimization
+
+What makes Particle Lenia fascinating is that each particle performs *greedy local optimization* — it minimizes its own energy without considering global effects. This is computationally simple but produces surprisingly rich behaviors compared to global energy minimization.
+
+The system exhibits:
+
+- **Mass conservation**: Particle count remains constant automatically
+- **Scale invariance**: Patterns reproduce at different resolutions
+- **Emergent complexity**: Simple local rules generate sophisticated organized structures
+
+## Implementation
+
+A basic update step looks like:
+
+```python
+def step(positions, dt=0.1):
+    # Compute pairwise distances
+    diff = positions[:, None] - positions[None, :]
+    dist = np.linalg.norm(diff, axis=-1)
+
+    # Lenia field from Gaussian kernels
+    U = np.sum(np.exp(-dist**2 / sigma**2), axis=1)
+
+    # Growth: attracted to regions with ideal density
+    G = np.exp(-(U - mu)**2 / sigma_g**2)
+
+    # Repulsion: avoid overlap
+    R = np.sum(np.exp(-dist**2 / sigma_r**2), axis=1)
+
+    # Energy gradient (simplified)
+    E = R - G
+    grad_E = compute_gradient(positions, E)
+
+    return positions - dt * grad_E
+```
+
+## Why It Matters
+
+Particle Lenia demonstrates how complexity emerges from simplicity. With just local energy minimization and a few parameters, the system produces autonomous structures that move, divide, and interact in ways reminiscent of biological organisms.
+
+This connects to broader questions in artificial life: What minimal rules can produce lifelike behavior? How do global patterns emerge from local interactions? Particle Lenia provides an elegant playground for exploring these questions.
+
+## References
+
+- [Particle Lenia and the energy-based formulation](https://google-research.github.io/self-organising-systems/particle-lenia/) — Google Research
+- [¿Qué son las partículas Lenia?](https://bestiariotopologico.blogspot.com/2024/07/que-son-las-particulas-lenia.html) — Bestiario Topológico
