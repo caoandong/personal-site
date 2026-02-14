@@ -1,5 +1,97 @@
 a metr curve for video diffusion model 
 
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+from scipy.optimize import curve_fit
+
+# 1. Ground Truth Data (Zero Extensions, Strict Turing-Complete Duration)
+models = [
+    "Make-A-Video\n(Sep '22)", "Gen-2\n(Mar '23)", "Sora 1.0\n(Feb '24)", 
+    "Kling 1.0\n(Jun '24)", "Kling 2.0\n(Apr '25)", "Sora 2\n(Sep '25)", 
+    "Veo 3\n(Oct '25)", "Kling 3.0\n(Feb '26)", "Seedance 2.0\n(Feb '26)"
+]
+
+# Timeline (Decimal Years)
+dates = [2022.75, 2023.25, 2024.12, 2024.45, 2025.25, 2025.75, 2025.85, 2026.08, 2026.11]
+
+# Strict Turing-Complete Duration (Seconds of flawless physics/realism in a single shot)
+scores = [1, 2, 12, 10, 12, 15, 8, 15, 15]
+
+# 2. Setup the Plot Aesthetic
+plt.figure(figsize=(14, 8))
+plt.style.use('dark_background')
+ax = plt.gca()
+ax.set_facecolor('#0d1117')
+plt.gcf().patch.set_facecolor('#0d1117')
+ax.grid(color='#30363d', linestyle='--', linewidth=0.5, alpha=0.7)
+
+# 3. Fit an S-Curve (Logistic Function) to show the asymptote
+def logistic(x, L, k, x0):
+    return L / (1 + np.exp(-k * (x - x0)))
+
+# Fit the curve prioritizing the plateau at ~16s
+popt, _ = curve_fit(logistic, dates, scores, p0=[16, 3, 2024])
+x_smooth = np.linspace(2022.5, 2026.5, 100)
+y_smooth = logistic(x_smooth, *popt)
+
+# Plot the S-Curve
+plt.plot(x_smooth, y_smooth, color='#58a6ff', linewidth=2.5, alpha=0.6, linestyle='--', label="The S-Curve of Generative Physics")
+plt.fill_between(x_smooth, 0, y_smooth, color='#58a6ff', alpha=0.05)
+
+# 4. Plot the Data Points
+plt.plot(dates, scores, color='#00ff9d', linewidth=3, zorder=4, alpha=0.8)
+plt.scatter(dates, scores, color='#ffffff', s=120, zorder=5, edgecolors='#00ff9d', linewidth=2)
+
+# 5. Annotate the Points
+for i, txt in enumerate(models):
+    y_val = scores[i]
+    x_offset = -10 if i % 2 == 0 else 10
+    y_offset = 20 if i % 2 == 0 else -35
+    
+    # Custom offsets to prevent overlapping text
+    if "Sora 1.0" in txt: y_offset = 20; x_offset = -30
+    if "Kling 1.0" in txt: y_offset = -35; x_offset = 10
+    if "Kling 2.0" in txt: y_offset = 20; x_offset = -20
+    if "Veo 3" in txt: y_offset = -40; x_offset = -10
+    if "Seedance" in txt: y_offset = -35; x_offset = 15
+    if "Kling 3.0" in txt: y_offset = 20; x_offset = -30
+    if "Sora 2" in txt: y_offset = 20; x_offset = -20
+    
+    plt.annotate(txt, (dates[i], y_val), 
+                 xytext=(x_offset, y_offset), textcoords='offset points',
+                 color='#c9d1d9', fontsize=10, weight='bold')
+
+# 6. Highlight the Cinematic Cut Threshold
+plt.axhline(y=15, color='#ff7b72', linestyle='-', alpha=0.8, linewidth=2)
+plt.text(2022.6, 16, "The 'Cinematic Cut' Asymptote (~15 Seconds)", color='#ff7b72', fontweight='bold', fontsize=12)
+
+# 7. Add Strategic Storytelling Annotations
+plt.annotate("Industry Plateau:\nLabs stop chasing 60s continuous shots.\nAPIs intentionally capped to guarantee\n100% physics/audio perfection.",
+             xy=(2025.5, 14), xytext=(2023.6, 2),
+             arrowprops=dict(facecolor='#ff7b72', arrowstyle="->", lw=1.5, alpha=0.8),
+             color='#ff7b72', fontsize=11, style='italic', bbox=dict(facecolor='#0d1117', edgecolor='#30363d', alpha=0.8))
+
+# 8. Formatting
+plt.title("The True METR Curve: Single-Shot Turing Completeness\n(Duration of Flawless Realism before Physics Hallucinate, NO Extensions)", 
+          fontsize=16, weight='bold', color='#ffffff', pad=20)
+plt.xlabel("Release Timeline", fontsize=12, weight='bold', color='#8b949e')
+plt.ylabel("Turing-Complete Duration (Seconds)", fontsize=12, weight='bold', color='#8b949e')
+
+ax.spines['top'].set_visible(False)
+ax.spines['right'].set_visible(False)
+ax.spines['left'].set_color('#30363d')
+ax.spines['bottom'].set_color('#30363d')
+ax.tick_params(colors='#8b949e')
+
+plt.xlim(2022.5, 2026.4)
+plt.ylim(0, 30)
+plt.legend(loc='upper left', frameon=True, facecolor='#0d1117', edgecolor='#30363d', fontsize=11, labelcolor='#ffffff')
+plt.tight_layout()
+
+plt.show()
+```
+
 the duration of video and the quality of video: for how long the video becomes indistinguishable from reality?
 
 the competitive dynamics means that many players will enter into the race 
@@ -14,6 +106,7 @@ who benefitted the most from these?
 * content platforms for short series (?)
 
 to-agent: can agents become a consumer for the video content?
+
 if content creation becomes free, what becomes scarce and valuable? the script writers? the taste makers?
 
 agent end-to-end production:
@@ -49,3 +142,37 @@ the infra around the agentic content production is going to be important
 
 video as code
 most of the video production is going to be agents
+
+
+all videos will be made by agents
+* humans are the producers like kevin feige or miyazaki
+
+most videos will be consumed by agents
+
+what's scarce:
+* great stories and taste makers (i.e. producers)
+* energy and compute and memory and storage and network bandwidth
+
+most video production will be end-to-end so specialized workflows will be dead
+
+there will be more than one foundational model providers and they will have strengths in different areas; one of them will be open source
+
+everyone will have their personalized content producers - eventually pixels streamed directly to their phones
+
+code is the fundamental language for agents; video generator is a compiler / renderer from code
+
+demand: short videos, short drama, short anime, games 
+
+what's missing:
+* good video production agent (prob coming)
+* good producer / writer agent that tells the model what to generate
+* good curator of videos that gives feedback and iterate on the video
+* good search engine that index and search relevant content across the internet
+* good monetization mechanism for ai videos
+* good repo for managing video production assets
+
+
+
+ultimately:
+the pixel stream that hacks the brain
+end-to-end optimizing sensory stream to hack the human brain
