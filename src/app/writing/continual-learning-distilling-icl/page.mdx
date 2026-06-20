@@ -1,0 +1,63 @@
+# Continual Learning via Distilling In-Context Learning
+
+what is the ideal continual learning system look like?
+
+an animal can observe signal and compress it into knowledge to help predict the future better; importantly, it can learn to learn more efficiently on the fly so that even under radical changes to the environment and the animal's body it can update its internal representations efficiently to adapt to new situations; the on-the-fly adaptation is what makes an animal so robust;
+
+
+similarly, a learning agent should be able to learn to explore the environment, observe signals, compress it into general patterns to help predict the future; this process should happen on-the-fly with only a few examples;
+
+note that incredibly the llm can already do this with in-context learning; it can run implicit gradient descent by transforming token embeddings in successive application of induction head; i think this is an emergent meta-learning phenomenon where the model learns to learn just by solving these hard problems that require a lot of iterative processing on the tokens;
+
+i think in-context learning is the key to unlock continual learning; but right now the model forgets about the learned knowledge after the call; the next call always starts from scratch; is there way for the model to distill the learned knowledge into weights so that it can avoid the heavy reasoning chains the next time around and instead focus its processing power on higher levels of abstraction? moreover can the model learn common patterns of learning so that it improves the in-context learning performance? 
+
+
+
+recent papers have made some interesting progress in doing exactly that
+a transformer is basically a stack of self-attention blocks and FFN layers
+
+let A be the self-attention block that takes in token embedding x and outputs embedding 
+the classic FFN is linear -> activation -> linear layers; let (W1, b1) be the weight and bias of the first linear layer and (W2, b2) be the weight and bias of the second linear layer and g be the activation function; then FFN is basically W2 * g(W1 * a + b1) + b2
+
+the full transformer block is:
+W2 * g(W1 * A(x) + b1) + b2 + A(x)
+
+```python
+class FeedForward(nn.Module):
+    def __init__(self, cfg):
+        super().__init__()
+        self.fc1 = nn.Linear(...)
+        self.fc2 = nn.Linear(...)
+        self.fc3 = nn.Linear(...)
+
+    def forward(self, x):
+        x_fc1 = self.fc1(x)
+        x_fc2 = self.fc2(x)
+        x = nn.functional.silu(x_fc1) * x_fc2
+        return self.fc3(x)
+
+class TransformerBlock(nn.Module):
+    def __init__(self, cfg):
+        super().__init__()
+        self.att = AttentionBlock(...)
+        self.ff = FeedForward(cfg)
+        self.norm1 = RMSNorm(...)
+        self.norm2 = RMSNorm(...)
+
+    def forward(self, x, mask, cos, sin):
+        # Shortcut connection for attention block
+        shortcut = x
+        x = self.norm1(x)
+        x = self.att(x, mask, cos, sin)  # Shape [batch_size, num_tokens, emb_size]
+        x = x + shortcut  # Add the original input back
+
+        # Shortcut connection for feed-forward block
+        shortcut = x
+        x = self.norm2(x)
+        x = self.ff(x)
+        x = x + shortcut  # Add the original input back
+
+        return x
+```
+
+note that 
