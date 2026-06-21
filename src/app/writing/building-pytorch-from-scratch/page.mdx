@@ -1,0 +1,57 @@
+# Building PyTorch From Scratch
+
+how does pytorch work exactly? 
+
+a spherical cow model:
+pytorch is a tensor library that supports auto differentiation
+
+at its core there is this tensor object
+basically a multi-dimensional array plus gradients
+
+at its core it needs to behave like this
+
+```python
+
+x = Tensor([[1, 2, 3],
+            [4, 5, 6]], requires_grad=True)   # shape (2, 3)
+
+w = Tensor([10, 20, 30], requires_grad=True)   # shape (3,)
+
+y = x * w                                     # broadcast w -> shape (2, 3)
+loss = y.sum()                                # scalar
+loss.backward()
+
+```
+
+so from this example the `Tensor` class needs to look something like this:
+
+```python
+
+class Tensor:
+
+    def __init__(
+        self,
+        data,
+        requires_grad: bool,
+    ):
+        ...
+
+    def __mul__(self, other) -> Tensor:
+        raise NotImplementedError
+    
+    def sum(self) -> Tensor:
+        raise NotImplementedError
+
+    # and a bunch of other operations like addition and subtraction etc
+
+    def backward(self) -> None:
+        raise NotImplementedError
+
+```
+
+## Tensor indexing
+
+
+so let's say we have this tensor that has 
+
+

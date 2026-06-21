@@ -6,6 +6,16 @@ export interface Post {
 
 export const posts: Post[] = [
   {
+    slug: 'building-pytorch-from-scratch',
+    title: 'Building PyTorch From Scratch',
+    date: '2026-06-21',
+  },
+  {
+    slug: 'revisiting-transformer',
+    title: 'Revisiting Transformer',
+    date: '2026-06-20',
+  },
+  {
     slug: 'lenia',
     title: 'Particle Lenia',
     date: '2025-02-05',
@@ -27,7 +37,7 @@ export function getRecentPosts(limit?: number): Post[] {
 export function groupPostsByYear(posts: Post[]): Record<string, Post[]> {
   return posts.reduce(
     (acc, post) => {
-      const year = new Date(post.date).getFullYear().toString()
+      const year = post.date.slice(0, 4)
       if (!acc[year]) acc[year] = []
       acc[year].push(post)
       return acc
@@ -37,8 +47,6 @@ export function groupPostsByYear(posts: Post[]): Record<string, Post[]> {
 }
 
 export function formatDate(dateString: string): string {
-  const date = new Date(dateString)
-  const month = String(date.getMonth() + 1).padStart(2, '0')
-  const day = String(date.getDate()).padStart(2, '0')
+  const [, month, day] = dateString.split('-')
   return `${month}/${day}`
 }
