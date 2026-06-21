@@ -3,7 +3,7 @@
 how does pytorch work exactly? 
 
 a spherical cow model:
-pytorch is a tensor library that supports auto differentiation
+pytorch is a tensor library that supports auto differentiation (i.e. autograd)
 
 at its core there is this tensor object
 basically a multi-dimensional array plus gradients
@@ -55,3 +55,30 @@ class Tensor:
 so let's say we have this tensor that has 
 
 
+## Matrix Multiplication
+
+In general a multi-dimensional matrix multiplication is just a bunch of 2D matrix multiplications.
+More precisely, in matmul `C = A @ B` we contracts A's last axis with B's second-to-last axis.
+
+for 2D: 
+
+C_{ik} = \sum_{j} A_{ij} B_{jk}
+
+for 3D:
+
+C_{hik} = \sum_{j} A_{hij} B_{hjk}
+
+for high dimensions it's literally the same thing except that there are more dimensions in front
+
+C_{...ik} = \sum_{j} A_{...ij} B_{...jk}
+
+
+so in code we literally have
+
+```
+for every output index (...batch, row, col):
+    total = 0
+    for inner in range(n):
+        total += A[..., row, inner] * B[..., inner, col]
+    C[..., row, col] = total
+```
