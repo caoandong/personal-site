@@ -1,0 +1,132 @@
+# Cuda kernels from scratch
+
+## Simple example
+
+start with a simple vector add
+
+goal:
+
+Implement a float16 vector addition kernel.
+
+Input: tuple(torch.Tensor, torch.Tensor) with tensors of shape (N, N) and type torch.float16. These tensors are from a normal distribution with mean 0 and variance 1. Output: torch.Tensor of shape (N, N) and type torch.float16
+
+
+
+starter code
+```python
+from task import input_t, output_t
+def custom_kernel(data: input_t) -> output_t:
+    pass
+```
+
+naively it's literally
+```python
+
+def vector_add(data):
+    A, B, C = data
+    rows, cols = A.shape
+
+    for i in range(rows):
+        for j in range(cols):
+            C[i, j] = A[i, j] + B[i, j]
+
+    return C
+
+```
+
+obviously that's slow
+we should translate that into Cuda
+
+
+anatomy of a cuda kernel 
+
+to define and use cua kernel inline we can use `from torch.utils.cpp_extension.load_inline` functions
+
+it loads the cuda code inline and make it available to torch
+
+to do so we need to define `add_cuda_source` and `add_cpp_source`
+
+`add_cpp_source` is just a wrapper around the cuda kernel and the torch boilerplate
+
+```python
+from torch.utils.cpp_extension import load_inline
+
+add_cuda_source = """
+torch::Tensor add_cuda(torch::Tensor A, torch::Tensor B, torch::Tensor C) {
+    // TODO: actual cuda code here
+    assert false;
+}
+"""
+
+add_cpp_source = """
+#include <torch/extension.h>
+
+torch::Tensor add_cuda(torch::Tensor A, torch::Tensor B, torch::Tensor C);
+"""
+
+add_module = load_inline(
+    name='add_cuda_module',
+    cpp_sources=add_cpp_source,
+    cuda_sources=add_cuda_source,
+    functions=['add_cuda'],
+    verbose=True,
+)
+
+def add(A, B, C):
+    return add_module.add_cuda(A, B, C)
+
+def vector_add(data):
+    A, B, C = data
+
+    return add(A, B, C)
+
+```
+
+note that here `add_cuda` function takes in `torch::Tensor` object (vs `torch::Tensor*`), because it is already a small pointer to the underlying data
+
+
+# Divide the problem
+
+the core philosophy in cuda is to breakdown the problem into independent tasks and process the tasks in parallel
+
+since every element in the addition problem is independent, the simplest breakdown is to process one element in the matrix in one thread; concretely for matrix element of index `elementIndex` we do
+
+```
+C[elementIndex] = A[elementIndex] + B[elementIndex];
+```
+
+the question is how to map the element to blocks
+
+let's say we have a total of 4 blocks and each block has 5 threads
+we have matrix of shape 4x4 with the following index
+```
+matrix element index
+
+        col 0   col 1   col 2   col 3
+row 0     0       1       2       3
+row 1     4       5       6       7
+row 2     8       9      10      11
+row 3    12      13      14      15
+```
+
+then naively we can map every continuous element to a continuous thread
+
+```
+        col 0          col 1          col 2          col 3
+row 0   0  B0:T0       1  B0:T1       2  B0:T2       3  B0:T3
+row 1   4  B0:T4       5  B1:T0       6  B1:T1       7  B1:T2
+row 2   8  B1:T3       9  B1:T4       10 B2:T0       11 B2:T1
+row 3   12 B2:T2       13 B2:T3       14 B2:T4       15 B3:T0
+```
+
+
+
+```
+num_threads = NUM_THREADS
+
+N = A.numel()
+
+num_blocks = ceil(N / num_threads)
+```
+
+then for each thread

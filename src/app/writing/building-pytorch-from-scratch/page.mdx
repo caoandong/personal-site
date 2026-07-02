@@ -5,6 +5,8 @@ how does pytorch work exactly?
 a spherical cow model:
 pytorch is a tensor library that supports auto differentiation (i.e. autograd)
 
+## Tensor
+
 at its core there is this tensor object
 basically a multi-dimensional array plus gradients
 
@@ -36,10 +38,10 @@ class Tensor:
     ):
         ...
 
-    def __mul__(self, other) -> Tensor:
+    def __mul__(self, other) -> Self:
         raise NotImplementedError
     
-    def sum(self) -> Tensor:
+    def sum(self) -> Self:
         raise NotImplementedError
 
     # and a bunch of other operations like addition and subtraction etc
@@ -49,10 +51,38 @@ class Tensor:
 
 ```
 
-## Tensor indexing
+## Indexing
+
+under the hood tensor is just a list of numbers with a mechanism (or a "view") to index and divide the list so that it can represent multi-dimensional arrays
 
 
-so let's say we have this tensor that has 
+for example
+
+generally speaking, to get the value at [x1, x2, ..., xn] the actual position in the storage is
+
+```python
+  x1 * shape[1] * shape[2] * ... * shape[n-1] \
++ x2 * shape[2] * shape[3] * ... * shape[n-1] \
++ xn
+```
+
+these coefficients for each dimension are precomputed into a list called `strides`
+
+```python
+  x1 * stride[1] \
++ x2 * stride[2] \
++ xn
+```
+
+therefore translating the index to storage position is simply
+
+```python
+def index_to_position(index, strides):
+    sum(i * stride for i, stride in zip(index, strides))
+```
+
+there are common operations like 
+
 
 
 ## Matrix Multiplication
