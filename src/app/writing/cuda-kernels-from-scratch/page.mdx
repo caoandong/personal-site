@@ -109,7 +109,8 @@ row 2     8       9      10      11
 row 3    12      13      14      15
 ```
 
-then naively we can map every continuous element to a continuous thread
+then naively we can map every continuous element to a continuous thread, as indicated below in `B{blockIdx}:T{threadIdx}` format
+
 
 ```
         col 0          col 1          col 2          col 3
@@ -119,14 +120,14 @@ row 2   8  B1:T3       9  B1:T4       10 B2:T0       11 B2:T1
 row 3   12 B2:T2       13 B2:T3       14 B2:T4       15 B3:T0
 ```
 
-
+traslate into code this means
 
 ```
-num_threads = NUM_THREADS
+N = A.numel();
 
-N = A.numel()
+num_blocks = ceil(N / NUM_THREADS);
 
-num_blocks = ceil(N / num_threads)
+elementIndex = blockIdx.x * blockDim.x + threadIdx.x;
 ```
 
 then for each thread
