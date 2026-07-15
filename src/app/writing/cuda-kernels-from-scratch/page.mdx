@@ -131,3 +131,14 @@ elementIndex = blockIdx.x * blockDim.x + threadIdx.x;
 ```
 
 then for each thread
+
+## Example: Fused RMSNorm + GEMM
+
+goal:
+implement a kernel that runs this operation: `RMSNorm(A @ B)`
+
+input: A of shape (M, K) and B of shape (K, N), find `C = RMSNorm(A @ B)` of shape (M, N)
+here `RMSNorm(A) = \sqrt(d) A / ||A||_2` row-wise
+
+this is common in transformers where for example each row of A @ B corresponds to the hidden states of a token; in that case we apply rms norm along each row to make the hidden state of each token numerically stable
+

@@ -840,7 +840,66 @@ Every week should end with:
 
 ---
 
-# 11. Research references
+# 11. Scheduled intensive calendar
+
+The first complete campaign is scheduled from **July 14, 2026 through September 3, 2028**. It contains 783 consecutive two-hour sessions: approximately 112 weeks and 1,566 focused hours.
+
+This is an aggressive foundation-to-research apprenticeship, not a claim that calendar completion alone establishes mastery. Advancement is earned by the gate at the end of each phase.
+
+| Phase                                        | Dates                     | Duration | Hours | Outcome                                                                                                                   |
+| -------------------------------------------- | ------------------------- | -------: | ----: | ------------------------------------------------------------------------------------------------------------------------- |
+| **0. Baseline and laboratory**               | Jul 14–26, 2026           |  13 days |    26 | Placement tests, deficiency map, reproducible CPU/GPU laboratory, evidence ledger and TGPU simulator skeleton             |
+| **1. NAND to scalar neural machine**         | Jul 27–Sep 20, 2026       |  8 weeks |   112 | Checkpoints 0–4: logic, arithmetic, memory, ISA, processor, assembler and fixed-point MLP                                 |
+| **2. SIMT architecture and memory**          | Sep 21–Nov 29, 2026       | 10 weeks |   140 | Checkpoints 5–10: lanes, divergence, blocks, coalescing, shared memory, atomics, reductions and tiled GEMM                |
+| **3. Timing, numerics and Tensor Cores**     | Nov 30, 2026–Jan 24, 2027 |  8 weeks |   112 | Checkpoints 11–15: scoreboards, scheduling, caches, floating point, MMA and asynchronous pipelines                        |
+| **4. Compiler, PTX and SASS**                | Jan 25–Apr 18, 2027       | 12 weeks |   168 | Checkpoints 16–21: TensorScript, SSA IR, lowering, optimization, scheduling, register allocation and machine-code tracing |
+| **5. CUDA kernel forge**                     | Apr 19–Jul 25, 2027       | 14 weeks |   196 | Production primitive ladder, sanitizers, profilers, CUTLASS/CuTe and architecture-specific optimization                   |
+| **6. ML stack, attention and transformer**   | Jul 26–Oct 31, 2027       | 14 weeks |   196 | Checkpoints 22–30: tensors, autodiff, numerics, attention, transformer, optimization, mixed precision and graph execution |
+| **7. Runtime, serving and megakernels**      | Nov 1, 2027–Jan 23, 2028  | 12 weeks |   168 | Checkpoints 31–34: KV cache, batching, scheduling, device queues, persistent execution and serving integration            |
+| **8. Distributed GPU systems**               | Jan 24–Apr 16, 2028       | 12 weeks |   168 | Checkpoints 35–38: links, collectives, parallelism, overlap, checkpointing, failures and multi-node scaling               |
+| **9. Real hardware and research expedition** | Apr 17–Sep 3, 2028        | 20 weeks |   280 | WebGPU/CUDA/RTL raids followed by one original architecture/compiler/kernel/runtime research or production contribution   |
+
+## Daily 4:30–6:30 PM protocol
+
+The study block deliberately occupies a low-energy late-afternoon period. It must therefore minimize startup decisions and force active work before fatigue can turn the session into passive reading.
+
+```text
+16:30–16:45  closed-book retrieval and state today's prediction
+16:45–17:45  one pre-scoped construction or derivation
+17:45–17:55  walk and reset
+17:55–18:20  hostile tests, disassembly, profiling or measurement
+18:20–18:30  error log, preserve artifact, write tomorrow's first action
+```
+
+The final ten minutes are part of the next day's session: the learner must leave a runnable command, failing test, open trace, or precise first edit. The exhausted learner should never begin by choosing a resource or deciding what to build.
+
+## Weekly rhythm
+
+| Day           | Direct performance                                                                                         |
+| ------------- | ---------------------------------------------------------------------------------------------------------- |
+| **Monday**    | Derive and map the week's mechanism from first principles. State invariants and performance predictions.   |
+| **Tuesday**   | Build the smallest correct implementation.                                                                 |
+| **Wednesday** | Add hostile cases, instrumentation and the next layer of realism.                                          |
+| **Thursday**  | Optimize one causal variable and inspect the resulting trace or machine code.                              |
+| **Friday**    | Debugging, profiler, disassembly, layout or numerical drill.                                               |
+| **Saturday**  | Integration project or boss challenge under a fixed two-hour constraint.                                   |
+| **Sunday**    | Closed-book reconstruction, held-out transfer test, evidence review and pre-scope the next seven sessions. |
+
+## Gate rule
+
+A calendar boundary does not override evidence. If a phase gate fails:
+
+1. name the failed invariant or transfer skill;
+2. use the next phase's first sessions for the smallest corrective drill;
+3. retake a changed version of the gate;
+4. advance only after the failure is explained and repaired;
+5. record the schedule variance rather than quietly lowering the standard.
+
+The calendar supplies pressure and consistency. The gates preserve truth.
+
+---
+
+# 12. Research references
 
 ## Constructionist computing and visual machines
 
