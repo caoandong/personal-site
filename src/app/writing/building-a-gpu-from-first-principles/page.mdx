@@ -22,14 +22,23 @@ Each thread has its own `threadId` that allows us to index and divide the data s
 The code above is compiled to assembly (SASS) code and submitted to the GPU:
 
 
-```asm
-TID   R0                  ; R0 = lane/thread ID
-SHL   R0, R0, 2           ; R0 = tid * 4: byte offset
-LD    R1, [R0 + 0x100]    ; R1 = A[tid]
-LD    R2, [R0 + 0x108]    ; R2 = B[tid]
-ADD   R3, R1, R2          ; R3 = A[tid] + B[tid]
-ST    [R0 + 0x110], R3    ; C[tid] = R3
-EXIT
+```nvidia-sass
+.text.vector_add:
+    S2R         R6, SR_TID.X ;                    // tid = threadIdx.x
+    MOV         R7, 0x4 ;                         // sizeof(int)
+    ULDC.64     UR4, c[0x0][0x118] ;              // global-memory descriptor
+
+    IMAD.WIDE   R2, R6, R7, c[0x0][0x160] ;      // A + tid*4
+    IMAD.WIDE   R4, R6.reuse, R7.reuse, c[0x0][0x168] ; // B + tid*4
+
+    LDG.E       R2, desc[UR4][R2.64] ;            // A[tid]
+    LDG.E       R5, desc[UR4][R4.64] ;            // B[tid]
+
+    IMAD.WIDE   R6, R6, R7, c[0x0][0x170] ;      // C + tid*4
+    IADD3       R9, R2, R5, RZ ;                  // A[tid] + B[tid]
+    STG.E       desc[UR4][R6.64], R9 ;            // C[tid] = result
+
+    EXIT ;
 ```
 
 

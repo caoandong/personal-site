@@ -57,8 +57,8 @@ const withMDX = createMDX({
     ],
     rehypePlugins: [
       'rehype-katex',
-      // rehype-pretty-code with serializable options for Turbopack compatibility
-      ['rehype-pretty-code', {
+      // Local wrapper keeps the custom grammar compatible with Turbopack.
+      [path.join(__dirname, 'src/lib/rehype-code.mjs'), {
         theme: {
           dark: 'github-dark-dimmed',
           light: 'github-light',

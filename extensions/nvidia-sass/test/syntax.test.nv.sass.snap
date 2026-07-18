@@ -1,0 +1,240 @@
+>// SYNTAX TEST "source.nvidia-sass" "NVIDIA SASS disassembly"
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.nvidia-sass comment.line.double-slash.nvidia-sass
+>
+>.headerflags @"EF_CUDA_SM100 EF_CUDA_VIRTUAL_SM(EF_CUDA_SM100)"
+#^^^^^^^^^^^^ source.nvidia-sass meta.directive.nvidia-sass keyword.other.directive.nvidia-sass
+#            ^ source.nvidia-sass meta.directive.nvidia-sass
+#             ^ source.nvidia-sass meta.directive.nvidia-sass string.quoted.double.nvidia-sass punctuation.definition.string.prefix.nvidia-sass
+#              ^ source.nvidia-sass meta.directive.nvidia-sass string.quoted.double.nvidia-sass punctuation.definition.string.begin.nvidia-sass
+#               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.nvidia-sass meta.directive.nvidia-sass string.quoted.double.nvidia-sass
+#                                                              ^ source.nvidia-sass meta.directive.nvidia-sass string.quoted.double.nvidia-sass punctuation.definition.string.end.nvidia-sass
+>
+>        /*0000*/                   MOV R1, c[0x0][0x28] ;
+#^^^^^^^^ source.nvidia-sass meta.instruction.nvidia-sass
+#        ^^ source.nvidia-sass meta.instruction.nvidia-sass punctuation.definition.comment.begin.nvidia-sass
+#          ^^^^ source.nvidia-sass meta.instruction.nvidia-sass constant.numeric.address.nvidia-sass
+#              ^^ source.nvidia-sass meta.instruction.nvidia-sass punctuation.definition.comment.end.nvidia-sass
+#                ^^^^^^^^^^^^^^^^^^^ source.nvidia-sass meta.instruction.nvidia-sass
+#                                   ^^^ source.nvidia-sass meta.instruction.nvidia-sass keyword.control.instruction.nvidia-sass
+#                                      ^ source.nvidia-sass meta.instruction.nvidia-sass
+#                                       ^^ source.nvidia-sass meta.instruction.nvidia-sass variable.other.register.nvidia-sass
+#                                         ^ source.nvidia-sass meta.instruction.nvidia-sass punctuation.nvidia-sass
+#                                          ^ source.nvidia-sass meta.instruction.nvidia-sass
+#                                           ^ source.nvidia-sass meta.instruction.nvidia-sass storage.type.memory-space.nvidia-sass
+#                                            ^ source.nvidia-sass meta.instruction.nvidia-sass punctuation.nvidia-sass
+#                                             ^^^ source.nvidia-sass meta.instruction.nvidia-sass constant.numeric.nvidia-sass
+#                                                ^ source.nvidia-sass meta.instruction.nvidia-sass punctuation.nvidia-sass
+#                                                 ^ source.nvidia-sass meta.instruction.nvidia-sass punctuation.nvidia-sass
+#                                                  ^^^^ source.nvidia-sass meta.instruction.nvidia-sass constant.numeric.nvidia-sass
+#                                                      ^ source.nvidia-sass meta.instruction.nvidia-sass punctuation.nvidia-sass
+#                                                       ^ source.nvidia-sass meta.instruction.nvidia-sass
+#                                                        ^ source.nvidia-sass meta.instruction.nvidia-sass punctuation.nvidia-sass
+>        /*0010*/                   S2R R6, SR_TID.X ;
+#^^^^^^^^ source.nvidia-sass meta.instruction.nvidia-sass
+#        ^^ source.nvidia-sass meta.instruction.nvidia-sass punctuation.definition.comment.begin.nvidia-sass
+#          ^^^^ source.nvidia-sass meta.instruction.nvidia-sass constant.numeric.address.nvidia-sass
+#              ^^ source.nvidia-sass meta.instruction.nvidia-sass punctuation.definition.comment.end.nvidia-sass
+#                ^^^^^^^^^^^^^^^^^^^ source.nvidia-sass meta.instruction.nvidia-sass
+#                                   ^^^ source.nvidia-sass meta.instruction.nvidia-sass keyword.control.instruction.nvidia-sass
+#                                      ^ source.nvidia-sass meta.instruction.nvidia-sass
+#                                       ^^ source.nvidia-sass meta.instruction.nvidia-sass variable.other.register.nvidia-sass
+#                                         ^ source.nvidia-sass meta.instruction.nvidia-sass punctuation.nvidia-sass
+#                                          ^ source.nvidia-sass meta.instruction.nvidia-sass
+#                                           ^^^^^^^^ source.nvidia-sass meta.instruction.nvidia-sass support.constant.system-register.nvidia-sass
+#                                                   ^ source.nvidia-sass meta.instruction.nvidia-sass
+#                                                    ^ source.nvidia-sass meta.instruction.nvidia-sass punctuation.nvidia-sass
+>        /*0020*/          @!P0     FADD.FTZ R9, |R2|.reuse, -1.5e-07 ;
+#^^^^^^^^ source.nvidia-sass meta.instruction.nvidia-sass
+#        ^^ source.nvidia-sass meta.instruction.nvidia-sass punctuation.definition.comment.begin.nvidia-sass
+#          ^^^^ source.nvidia-sass meta.instruction.nvidia-sass constant.numeric.address.nvidia-sass
+#              ^^ source.nvidia-sass meta.instruction.nvidia-sass punctuation.definition.comment.end.nvidia-sass
+#                ^^^^^^^^^^ source.nvidia-sass meta.instruction.nvidia-sass
+#                          ^^^^ source.nvidia-sass meta.instruction.nvidia-sass keyword.control.predicate.nvidia-sass
+#                              ^^^^^ source.nvidia-sass meta.instruction.nvidia-sass
+#                                   ^^^^ source.nvidia-sass meta.instruction.nvidia-sass keyword.control.instruction.nvidia-sass
+#                                       ^^^^ source.nvidia-sass meta.instruction.nvidia-sass keyword.other.modifier.nvidia-sass
+#                                           ^ source.nvidia-sass meta.instruction.nvidia-sass
+#                                            ^^ source.nvidia-sass meta.instruction.nvidia-sass variable.other.register.nvidia-sass
+#                                              ^ source.nvidia-sass meta.instruction.nvidia-sass punctuation.nvidia-sass
+#                                               ^ source.nvidia-sass meta.instruction.nvidia-sass
+#                                                ^ source.nvidia-sass meta.instruction.nvidia-sass keyword.operator.nvidia-sass
+#                                                 ^^ source.nvidia-sass meta.instruction.nvidia-sass variable.other.register.nvidia-sass
+#                                                   ^ source.nvidia-sass meta.instruction.nvidia-sass keyword.operator.nvidia-sass
+#                                                    ^^^^^^ source.nvidia-sass meta.instruction.nvidia-sass keyword.other.modifier.nvidia-sass
+#                                                          ^ source.nvidia-sass meta.instruction.nvidia-sass punctuation.nvidia-sass
+#                                                           ^ source.nvidia-sass meta.instruction.nvidia-sass
+#                                                            ^^^^^^^^ source.nvidia-sass meta.instruction.nvidia-sass constant.numeric.nvidia-sass
+#                                                                    ^ source.nvidia-sass meta.instruction.nvidia-sass
+#                                                                     ^ source.nvidia-sass meta.instruction.nvidia-sass punctuation.nvidia-sass
+>        /*0030*/           @UP3    UTCHMMA.2CTA gdesc[UR8], desc[UR6][R2.64], tmem[UR14], idesc[UR17], UP1 ;
+#^^^^^^^^ source.nvidia-sass meta.instruction.nvidia-sass
+#        ^^ source.nvidia-sass meta.instruction.nvidia-sass punctuation.definition.comment.begin.nvidia-sass
+#          ^^^^ source.nvidia-sass meta.instruction.nvidia-sass constant.numeric.address.nvidia-sass
+#              ^^ source.nvidia-sass meta.instruction.nvidia-sass punctuation.definition.comment.end.nvidia-sass
+#                ^^^^^^^^^^^ source.nvidia-sass meta.instruction.nvidia-sass
+#                           ^^^^ source.nvidia-sass meta.instruction.nvidia-sass keyword.control.predicate.nvidia-sass
+#                               ^^^^ source.nvidia-sass meta.instruction.nvidia-sass
+#                                   ^^^^^^^ source.nvidia-sass meta.instruction.nvidia-sass keyword.control.instruction.nvidia-sass
+#                                          ^^^^^ source.nvidia-sass meta.instruction.nvidia-sass keyword.other.modifier.nvidia-sass
+#                                               ^ source.nvidia-sass meta.instruction.nvidia-sass
+#                                                ^^^^^ source.nvidia-sass meta.instruction.nvidia-sass storage.type.memory-space.nvidia-sass
+#                                                     ^ source.nvidia-sass meta.instruction.nvidia-sass punctuation.nvidia-sass
+#                                                      ^^^ source.nvidia-sass meta.instruction.nvidia-sass variable.other.register.nvidia-sass
+#                                                         ^ source.nvidia-sass meta.instruction.nvidia-sass punctuation.nvidia-sass
+#                                                          ^ source.nvidia-sass meta.instruction.nvidia-sass punctuation.nvidia-sass
+#                                                           ^ source.nvidia-sass meta.instruction.nvidia-sass
+#                                                            ^^^^ source.nvidia-sass meta.instruction.nvidia-sass storage.type.memory-space.nvidia-sass
+#                                                                ^ source.nvidia-sass meta.instruction.nvidia-sass punctuation.nvidia-sass
+#                                                                 ^^^ source.nvidia-sass meta.instruction.nvidia-sass variable.other.register.nvidia-sass
+#                                                                    ^ source.nvidia-sass meta.instruction.nvidia-sass punctuation.nvidia-sass
+#                                                                     ^ source.nvidia-sass meta.instruction.nvidia-sass punctuation.nvidia-sass
+#                                                                      ^^ source.nvidia-sass meta.instruction.nvidia-sass variable.other.register.nvidia-sass
+#                                                                        ^^^ source.nvidia-sass meta.instruction.nvidia-sass keyword.other.modifier.nvidia-sass
+#                                                                           ^ source.nvidia-sass meta.instruction.nvidia-sass punctuation.nvidia-sass
+#                                                                            ^ source.nvidia-sass meta.instruction.nvidia-sass punctuation.nvidia-sass
+#                                                                             ^ source.nvidia-sass meta.instruction.nvidia-sass
+#                                                                              ^^^^ source.nvidia-sass meta.instruction.nvidia-sass storage.type.memory-space.nvidia-sass
+#                                                                                  ^ source.nvidia-sass meta.instruction.nvidia-sass punctuation.nvidia-sass
+#                                                                                   ^^^^ source.nvidia-sass meta.instruction.nvidia-sass variable.other.register.nvidia-sass
+#                                                                                       ^ source.nvidia-sass meta.instruction.nvidia-sass punctuation.nvidia-sass
+#                                                                                        ^ source.nvidia-sass meta.instruction.nvidia-sass punctuation.nvidia-sass
+#                                                                                         ^ source.nvidia-sass meta.instruction.nvidia-sass
+#                                                                                          ^^^^^ source.nvidia-sass meta.instruction.nvidia-sass storage.type.memory-space.nvidia-sass
+#                                                                                               ^ source.nvidia-sass meta.instruction.nvidia-sass punctuation.nvidia-sass
+#                                                                                                ^^^^ source.nvidia-sass meta.instruction.nvidia-sass variable.other.register.nvidia-sass
+#                                                                                                    ^ source.nvidia-sass meta.instruction.nvidia-sass punctuation.nvidia-sass
+#                                                                                                     ^ source.nvidia-sass meta.instruction.nvidia-sass punctuation.nvidia-sass
+#                                                                                                      ^ source.nvidia-sass meta.instruction.nvidia-sass
+#                                                                                                       ^^^ source.nvidia-sass meta.instruction.nvidia-sass variable.other.register.predicate.nvidia-sass
+#                                                                                                          ^ source.nvidia-sass meta.instruction.nvidia-sass
+#                                                                                                           ^ source.nvidia-sass meta.instruction.nvidia-sass punctuation.nvidia-sass
+>        /*0040*/                   LDTM.x32 R20, tmem[UR7+0x1a8] ; /* 0x00000007001479aa */
+#^^^^^^^^ source.nvidia-sass meta.instruction.nvidia-sass
+#        ^^ source.nvidia-sass meta.instruction.nvidia-sass punctuation.definition.comment.begin.nvidia-sass
+#          ^^^^ source.nvidia-sass meta.instruction.nvidia-sass constant.numeric.address.nvidia-sass
+#              ^^ source.nvidia-sass meta.instruction.nvidia-sass punctuation.definition.comment.end.nvidia-sass
+#                ^^^^^^^^^^^^^^^^^^^ source.nvidia-sass meta.instruction.nvidia-sass
+#                                   ^^^^ source.nvidia-sass meta.instruction.nvidia-sass keyword.control.instruction.nvidia-sass
+#                                       ^^^^ source.nvidia-sass meta.instruction.nvidia-sass keyword.other.modifier.nvidia-sass
+#                                           ^ source.nvidia-sass meta.instruction.nvidia-sass
+#                                            ^^^ source.nvidia-sass meta.instruction.nvidia-sass variable.other.register.nvidia-sass
+#                                               ^ source.nvidia-sass meta.instruction.nvidia-sass punctuation.nvidia-sass
+#                                                ^ source.nvidia-sass meta.instruction.nvidia-sass
+#                                                 ^^^^ source.nvidia-sass meta.instruction.nvidia-sass storage.type.memory-space.nvidia-sass
+#                                                     ^ source.nvidia-sass meta.instruction.nvidia-sass punctuation.nvidia-sass
+#                                                      ^^^ source.nvidia-sass meta.instruction.nvidia-sass variable.other.register.nvidia-sass
+#                                                         ^ source.nvidia-sass meta.instruction.nvidia-sass keyword.operator.nvidia-sass
+#                                                          ^^^^^ source.nvidia-sass meta.instruction.nvidia-sass constant.numeric.nvidia-sass
+#                                                               ^ source.nvidia-sass meta.instruction.nvidia-sass punctuation.nvidia-sass
+#                                                                ^ source.nvidia-sass meta.instruction.nvidia-sass
+#                                                                 ^ source.nvidia-sass meta.instruction.nvidia-sass punctuation.nvidia-sass
+#                                                                  ^ source.nvidia-sass meta.instruction.nvidia-sass
+#                                                                   ^^ source.nvidia-sass meta.instruction.nvidia-sass punctuation.definition.comment.begin.nvidia-sass
+#                                                                     ^ source.nvidia-sass meta.instruction.nvidia-sass
+#                                                                      ^^^^^^^^^^^^^^^^^^ source.nvidia-sass meta.instruction.nvidia-sass constant.numeric.instruction-encoding.nvidia-sass
+#                                                                                        ^ source.nvidia-sass meta.instruction.nvidia-sass
+#                                                                                         ^^ source.nvidia-sass meta.instruction.nvidia-sass punctuation.definition.comment.end.nvidia-sass
+>        /*0050*/                   MOV R20, 32@lo((_Z6kernali + .L_1@srel)) ;
+#^^^^^^^^ source.nvidia-sass meta.instruction.nvidia-sass
+#        ^^ source.nvidia-sass meta.instruction.nvidia-sass punctuation.definition.comment.begin.nvidia-sass
+#          ^^^^ source.nvidia-sass meta.instruction.nvidia-sass constant.numeric.address.nvidia-sass
+#              ^^ source.nvidia-sass meta.instruction.nvidia-sass punctuation.definition.comment.end.nvidia-sass
+#                ^^^^^^^^^^^^^^^^^^^ source.nvidia-sass meta.instruction.nvidia-sass
+#                                   ^^^ source.nvidia-sass meta.instruction.nvidia-sass keyword.control.instruction.nvidia-sass
+#                                      ^ source.nvidia-sass meta.instruction.nvidia-sass
+#                                       ^^^ source.nvidia-sass meta.instruction.nvidia-sass variable.other.register.nvidia-sass
+#                                          ^ source.nvidia-sass meta.instruction.nvidia-sass punctuation.nvidia-sass
+#                                           ^ source.nvidia-sass meta.instruction.nvidia-sass
+#                                            ^^ source.nvidia-sass meta.instruction.nvidia-sass constant.numeric.nvidia-sass
+#                                              ^^^ source.nvidia-sass meta.instruction.nvidia-sass keyword.operator.relocation.nvidia-sass
+#                                                 ^ source.nvidia-sass meta.instruction.nvidia-sass punctuation.nvidia-sass
+#                                                  ^ source.nvidia-sass meta.instruction.nvidia-sass punctuation.nvidia-sass
+#                                                   ^^^^^^^^^^^ source.nvidia-sass meta.instruction.nvidia-sass
+#                                                              ^ source.nvidia-sass meta.instruction.nvidia-sass keyword.operator.nvidia-sass
+#                                                               ^ source.nvidia-sass meta.instruction.nvidia-sass
+#                                                                ^^^^ source.nvidia-sass meta.instruction.nvidia-sass variable.other.label.nvidia-sass
+#                                                                    ^^^^^ source.nvidia-sass meta.instruction.nvidia-sass keyword.operator.relocation.nvidia-sass
+#                                                                         ^ source.nvidia-sass meta.instruction.nvidia-sass punctuation.nvidia-sass
+#                                                                          ^ source.nvidia-sass meta.instruction.nvidia-sass punctuation.nvidia-sass
+#                                                                           ^ source.nvidia-sass meta.instruction.nvidia-sass
+#                                                                            ^ source.nvidia-sass meta.instruction.nvidia-sass punctuation.nvidia-sass
+>        /*0060*/                   CALL.ABS.NOINC `(_Z3fooi) ;
+#^^^^^^^^ source.nvidia-sass meta.instruction.nvidia-sass
+#        ^^ source.nvidia-sass meta.instruction.nvidia-sass punctuation.definition.comment.begin.nvidia-sass
+#          ^^^^ source.nvidia-sass meta.instruction.nvidia-sass constant.numeric.address.nvidia-sass
+#              ^^ source.nvidia-sass meta.instruction.nvidia-sass punctuation.definition.comment.end.nvidia-sass
+#                ^^^^^^^^^^^^^^^^^^^ source.nvidia-sass meta.instruction.nvidia-sass
+#                                   ^^^^ source.nvidia-sass meta.instruction.nvidia-sass keyword.control.instruction.nvidia-sass
+#                                       ^^^^ source.nvidia-sass meta.instruction.nvidia-sass keyword.other.modifier.nvidia-sass
+#                                           ^^^^^^ source.nvidia-sass meta.instruction.nvidia-sass keyword.other.modifier.nvidia-sass
+#                                                 ^ source.nvidia-sass meta.instruction.nvidia-sass
+#                                                  ^ source.nvidia-sass meta.instruction.nvidia-sass meta.label-reference.nvidia-sass punctuation.definition.label.nvidia-sass
+#                                                   ^ source.nvidia-sass meta.instruction.nvidia-sass meta.label-reference.nvidia-sass punctuation.section.parens.begin.nvidia-sass
+#                                                    ^^^^^^^ source.nvidia-sass meta.instruction.nvidia-sass meta.label-reference.nvidia-sass variable.other.label.nvidia-sass
+#                                                           ^ source.nvidia-sass meta.instruction.nvidia-sass meta.label-reference.nvidia-sass punctuation.section.parens.end.nvidia-sass
+#                                                            ^ source.nvidia-sass meta.instruction.nvidia-sass
+#                                                             ^ source.nvidia-sass meta.instruction.nvidia-sass punctuation.nvidia-sass
+>        /*0070*/                   BRA `(.L_1) ; // |  2 ::  v  |
+#^^^^^^^^ source.nvidia-sass meta.instruction.nvidia-sass
+#        ^^ source.nvidia-sass meta.instruction.nvidia-sass punctuation.definition.comment.begin.nvidia-sass
+#          ^^^^ source.nvidia-sass meta.instruction.nvidia-sass constant.numeric.address.nvidia-sass
+#              ^^ source.nvidia-sass meta.instruction.nvidia-sass punctuation.definition.comment.end.nvidia-sass
+#                ^^^^^^^^^^^^^^^^^^^ source.nvidia-sass meta.instruction.nvidia-sass
+#                                   ^^^ source.nvidia-sass meta.instruction.nvidia-sass keyword.control.instruction.nvidia-sass
+#                                      ^ source.nvidia-sass meta.instruction.nvidia-sass
+#                                       ^ source.nvidia-sass meta.instruction.nvidia-sass meta.label-reference.nvidia-sass punctuation.definition.label.nvidia-sass
+#                                        ^ source.nvidia-sass meta.instruction.nvidia-sass meta.label-reference.nvidia-sass punctuation.section.parens.begin.nvidia-sass
+#                                         ^^^^ source.nvidia-sass meta.instruction.nvidia-sass meta.label-reference.nvidia-sass variable.other.label.nvidia-sass
+#                                             ^ source.nvidia-sass meta.instruction.nvidia-sass meta.label-reference.nvidia-sass punctuation.section.parens.end.nvidia-sass
+#                                              ^ source.nvidia-sass meta.instruction.nvidia-sass
+#                                               ^ source.nvidia-sass meta.instruction.nvidia-sass punctuation.nvidia-sass
+#                                                ^ source.nvidia-sass meta.instruction.nvidia-sass
+#                                                 ^^^^^^^^^^^^^^^^ source.nvidia-sass meta.instruction.nvidia-sass comment.line.double-slash.nvidia-sass
+>
+>.L_1:
+#^^^^ source.nvidia-sass meta.label.nvidia-sass entity.name.label.nvidia-sass
+#    ^ source.nvidia-sass meta.label.nvidia-sass punctuation.definition.label.nvidia-sass
+>        /*0080*/                   EXIT ;
+#^^^^^^^^ source.nvidia-sass meta.instruction.nvidia-sass
+#        ^^ source.nvidia-sass meta.instruction.nvidia-sass punctuation.definition.comment.begin.nvidia-sass
+#          ^^^^ source.nvidia-sass meta.instruction.nvidia-sass constant.numeric.address.nvidia-sass
+#              ^^ source.nvidia-sass meta.instruction.nvidia-sass punctuation.definition.comment.end.nvidia-sass
+#                ^^^^^^^^^^^^^^^^^^^ source.nvidia-sass meta.instruction.nvidia-sass
+#                                   ^^^^ source.nvidia-sass meta.instruction.nvidia-sass keyword.control.instruction.nvidia-sass
+#                                       ^ source.nvidia-sass meta.instruction.nvidia-sass
+#                                        ^ source.nvidia-sass meta.instruction.nvidia-sass punctuation.nvidia-sass
+>
+>        //## File "/tmp/kernel.cu", line 25
+#^^^^^^^^ source.nvidia-sass
+#        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.nvidia-sass comment.line.double-slash.nvidia-sass
+>        /* 0x000fe20000000800 */
+#^^^^^^^^ source.nvidia-sass
+#        ^^ source.nvidia-sass punctuation.definition.comment.begin.nvidia-sass
+#          ^ source.nvidia-sass
+#           ^^^^^^^^^^^^^^^^^^ source.nvidia-sass constant.numeric.instruction-encoding.nvidia-sass
+#                             ^ source.nvidia-sass
+#                              ^^ source.nvidia-sass punctuation.definition.comment.end.nvidia-sass
+>        /* ordinary comment */
+#^^^^^^^^ source.nvidia-sass
+#        ^^ source.nvidia-sass comment.block.nvidia-sass punctuation.definition.comment.begin.nvidia-sass
+#          ^^^^^^^^^^^^^^^^^^ source.nvidia-sass comment.block.nvidia-sass
+#                            ^^ source.nvidia-sass comment.block.nvidia-sass punctuation.definition.comment.end.nvidia-sass
+>
+>Function : _Z6kernali
+#^^^^^^^^ source.nvidia-sass meta.function.nvidia-sass keyword.other.function.nvidia-sass
+#        ^^^ source.nvidia-sass meta.function.nvidia-sass punctuation.separator.key-value.nvidia-sass
+#           ^^^^^^^^^^ source.nvidia-sass meta.function.nvidia-sass entity.name.function.nvidia-sass
+>arch = sm_100
+#^^^^^^^ source.nvidia-sass
+#       ^^^^^^ source.nvidia-sass support.constant.architecture.nvidia-sass
+>SASS METADATA
+#^^^^^^^^^^^^^^ source.nvidia-sass
+>
+>.button
+#^^^^^^^^ source.nvidia-sass
+>  color: red
+#^^ source.nvidia-sass meta.label.nvidia-sass
+#  ^^^^^ source.nvidia-sass meta.label.nvidia-sass entity.name.label.nvidia-sass
+#       ^ source.nvidia-sass meta.label.nvidia-sass punctuation.definition.label.nvidia-sass
+#        ^^^^^ source.nvidia-sass
+>

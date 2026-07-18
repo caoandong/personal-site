@@ -1,0 +1,26 @@
+// SYNTAX TEST "source.nvidia-sass" "NVIDIA SASS disassembly"
+
+.headerflags @"EF_CUDA_SM100 EF_CUDA_VIRTUAL_SM(EF_CUDA_SM100)"
+
+        /*0000*/                   MOV R1, c[0x0][0x28] ;
+        /*0010*/                   S2R R6, SR_TID.X ;
+        /*0020*/          @!P0     FADD.FTZ R9, |R2|.reuse, -1.5e-07 ;
+        /*0030*/           @UP3    UTCHMMA.2CTA gdesc[UR8], desc[UR6][R2.64], tmem[UR14], idesc[UR17], UP1 ;
+        /*0040*/                   LDTM.x32 R20, tmem[UR7+0x1a8] ; /* 0x00000007001479aa */
+        /*0050*/                   MOV R20, 32@lo((_Z6kernali + .L_1@srel)) ;
+        /*0060*/                   CALL.ABS.NOINC `(_Z3fooi) ;
+        /*0070*/                   BRA `(.L_1) ; // |  2 ::  v  |
+
+.L_1:
+        /*0080*/                   EXIT ;
+
+        //## File "/tmp/kernel.cu", line 25
+        /* 0x000fe20000000800 */
+        /* ordinary comment */
+
+Function : _Z6kernali
+arch = sm_100
+SASS METADATA
+
+.button
+  color: red

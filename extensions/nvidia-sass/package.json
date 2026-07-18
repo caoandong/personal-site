@@ -1,0 +1,69 @@
+{
+  "name": "nvidia-sass",
+  "displayName": "NVIDIA SASS",
+  "description": "Syntax highlighting for NVIDIA CUDA SASS disassembly.",
+  "version": "0.1.0",
+  "publisher": "antonio",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/caoandong/personal-site.git",
+    "directory": "extensions/nvidia-sass"
+  },
+  "files": [
+    "syntaxes",
+    "LICENSE",
+    "README.md"
+  ],
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "keywords": [
+    "cuda",
+    "nvidia",
+    "sass",
+    "assembly",
+    "nvdisasm",
+    "cuobjdump"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "nvidia-sass",
+        "aliases": [
+          "NVIDIA SASS",
+          "CUDA SASS",
+          "nvidia-sass",
+          "cuda-sass",
+          "sassasm"
+        ],
+        "extensions": [
+          ".sass",
+          ".sassasm",
+          ".sassdump"
+        ],
+        "filenamePatterns": [
+          "*.nv.sass",
+          "*.cubin.sass"
+        ],
+        "firstLine": "^\\s*(?:Fatbin elf code:|code for sm_[0-9]+[a-z]?|\\.headerflags\\s+@\"EF_CUDA_)"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "nvidia-sass",
+        "scopeName": "source.nvidia-sass",
+        "path": "./syntaxes/nvidia-sass.tmLanguage.json"
+      }
+    ]
+  },
+  "scripts": {
+    "test": "vscode-tmgrammar-snap 'test/**/*.test.nv.sass'"
+  },
+  "devDependencies": {
+    "vscode-tmgrammar-test": "0.1.3"
+  }
+}
