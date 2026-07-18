@@ -3,6 +3,8 @@
 import { useEffect, useId, useRef, useState } from 'react'
 import { Pause, Play, RotateCcw } from 'lucide-react'
 
+import './gpu_visualization.css'
+
 const delays = [0, 1800, 1400, 1800, 1400, 500]
 const input_paths = ['M0 25 C28 25 28 50 56 50', 'M0 75 C28 75 28 50 56 50']
 
@@ -104,7 +106,7 @@ export function GpuHighLevelVisualization() {
 function Shimmer({ active }: { active: boolean }) {
   return (
     <span
-      className="gpu-viz-border text-foreground pointer-events-none absolute"
+      className="gpu-viz-border text-muted-foreground pointer-events-none absolute"
       data-active={active}
       aria-hidden="true"
     />
