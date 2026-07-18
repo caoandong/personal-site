@@ -4,9 +4,42 @@ import { GpuHighLevelVisualization } from './gpu_visualization'
 
 What is a GPU?
 
-At the most basic level, the GPU is a machine that executes instructions on data.
+At the most basic level, the GPU is a machine that executes instructions on data in parallel.
 <GpuHighLevelVisualization />
 
-for example, in the figure above, the GPU executes a vector add operation on array `A` and `B` and outputs `C`.
+For example, in the figure above, the GPU executes the following vector add operation on array `A` and `B` and saves the outputs to `C`.
+
+```cuda
+__global__ void vector_add(const int* A, const int* B, int* C) {
+    int i = threadIdx.x;
+    C[i] = A[i] + B[i];
+}
+```
+Inside the GPU there's a bunch of workers called **threads** that executes the same instruction.
+
+Each thread has its own `threadId` that allows us to index and divide the data so that each thread can work on difference pieces of the data in parallel.
+
+The code above is compiled to assembly (SASS) code and submitted to the GPU:
+
+
+```
+TID   R0                  ; R0 = lane/thread ID
+SHL   R0, R0, 2           ; R0 = tid * 4: byte offset
+LD    R1, [R0 + 0x100]    ; R1 = A[tid]
+LD    R2, [R0 + 0x108]    ; R2 = B[tid]
+ADD   R3, R1, R2          ; R3 = A[tid] + B[tid]
+ST    [R0 + 0x110], R3    ; C[tid] = R3
+EXIT
+```
+
+
+the instructions are loaded into the GPU global memory
+
+
+each instruction is one 32-bit word
+
+```
+
+```
 
 

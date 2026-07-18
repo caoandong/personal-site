@@ -1,29 +1,3 @@
-@keyframes gpu-viz-border-motion {
-  to {
-    offset-distance: 100%;
-  }
-}
-
-@keyframes gpu-viz-border-intensity {
-  0%,
-  100% {
-    opacity: 0;
-  }
-  35%,
-  65% {
-    opacity: 0.35;
-  }
-  50% {
-    opacity: 0.6;
-  }
-}
-
-@keyframes gpu-viz-flow {
-  to {
-    transform: translateX(80px);
-  }
-}
-
 .gpu-viz-border {
   --gpu-viz-clear: color-mix(in srgb, currentColor 0%, transparent);
   --gpu-viz-soft: color-mix(in srgb, currentColor 22%, transparent);
@@ -47,7 +21,7 @@
   width: 8rem;
   height: 8rem;
   content: '';
-  opacity: 0;
+  opacity: var(--gpu-viz-intensity, 0);
   background: radial-gradient(
     circle,
     currentColor,
@@ -55,15 +29,9 @@
     var(--gpu-viz-clear) 72%
   );
   offset-path: inset(1px round 11px);
-  offset-distance: 0%;
+  offset-distance: var(--gpu-viz-offset, 0%);
   offset-anchor: center;
   offset-rotate: 0deg;
-}
-
-.gpu-viz-border[data-active='true']::after {
-  animation:
-    gpu-viz-border-motion 1.8s cubic-bezier(0.45, 0.05, 0.55, 0.95),
-    gpu-viz-border-intensity 1.8s ease-in-out;
 }
 
 .gpu-viz-flow {
@@ -81,21 +49,6 @@
 }
 
 .gpu-viz-flow-mask {
-  opacity: 0;
-}
-
-.gpu-viz-flow-mask[data-active='true'] {
-  opacity: 1;
-  animation: gpu-viz-flow 1.4s linear;
-}
-
-.gpu-viz[data-paused='true'] .gpu-viz-border::after,
-.gpu-viz[data-paused='true'] .gpu-viz-flow-mask {
-  animation-play-state: paused !important;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .gpu-viz * {
-    animation: none !important;
-  }
+  opacity: var(--gpu-viz-flow-opacity, 0);
+  transform: translateX(var(--gpu-viz-x, 0px));
 }

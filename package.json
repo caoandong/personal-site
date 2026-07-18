@@ -6,7 +6,8 @@
     "dev": "next dev -H 0.0.0.0",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test:animation": "node --experimental-strip-types --test src/lib/animation.test.ts"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.1.1",
@@ -26,7 +27,8 @@
     "remark-gfm": "^4.0.1",
     "remark-math": "^6.0.0",
     "shiki": "^3.22.0",
-    "tailwind-merge": "^3.4.0"
+    "tailwind-merge": "^3.4.0",
+    "zod": "^4.3.6"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
