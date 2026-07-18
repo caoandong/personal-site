@@ -9,7 +9,7 @@ At the most basic level, the GPU is a machine that executes instructions on data
 
 For example, in the figure above, the GPU executes the following vector add operation on array `A` and `B` and saves the outputs to `C`.
 
-```cuda
+```cpp
 __global__ void vector_add(const int* A, const int* B, int* C) {
     int i = threadIdx.x;
     C[i] = A[i] + B[i];
@@ -22,7 +22,7 @@ Each thread has its own `threadId` that allows us to index and divide the data s
 The code above is compiled to assembly (SASS) code and submitted to the GPU:
 
 
-```
+```asm
 TID   R0                  ; R0 = lane/thread ID
 SHL   R0, R0, 2           ; R0 = tid * 4: byte offset
 LD    R1, [R0 + 0x100]    ; R1 = A[tid]
@@ -33,13 +33,12 @@ EXIT
 ```
 
 
-the instructions are loaded into the GPU global memory
-
-
 each instruction is one 32-bit word
 
 ```
-
+ 31            24 23    20 19    16 15    12 11               0
+┌────────────────┬────────┬────────┬────────┬──────────────────┐
+│     opcode     │   A    │   B    │   C    │  immediate       │
+│     8 bits     │ 4 bits │ 4 bits │ 4 bits │  12 bits         │
+└────────────────┴────────┴────────┴────────┴──────────────────┘
 ```
-
-
