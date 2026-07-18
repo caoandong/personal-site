@@ -34,20 +34,17 @@ export function GpuHighLevelVisualization() {
             <code>B = [1, 3]</code>
           </div>
         </div>
-
         <InputArrows active={phase === 2} />
-
         <button
           onClick={run}
+          onPointerUp={(event) => event.currentTarget.blur()}
           className="border-border bg-muted text-foreground relative flex min-h-32 cursor-pointer items-center justify-center rounded-xl border p-6"
           aria-label="Run the program on the GPU"
         >
           <Shimmer active={phase === 3} />
           <span className="text-lg font-medium">GPU</span>
         </button>
-
         <Arrow active={phase === 4} />
-
         <div
           className="border-border relative flex flex-col justify-center rounded-xl border p-4"
           aria-live="polite"

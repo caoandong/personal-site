@@ -23,7 +23,7 @@
   --foreground: #fafafa;
   --heading: #f5f5f5; /* neutral-100 */
   --body: #d4d4d4; /* neutral-300 */
-  --muted: #27272a;
+  --muted: #18181b;
   --muted-foreground: #a1a1aa;
   --grey-1: #a1a1aa;
   --grey-2: #71717a;
@@ -347,6 +347,12 @@ pre [data-theme*=' '] span {
   }
 }
 
+@keyframes gpu-viz-head {
+  from {
+    opacity: 0;
+  }
+}
+
 .gpu-viz-border,
 .gpu-viz-flow {
   fill: none;
@@ -356,6 +362,11 @@ pre [data-theme*=' '] span {
   stroke-linecap: round;
   stroke-width: 1.5;
   vector-effect: non-scaling-stroke;
+  filter: drop-shadow(0 0 0.2rem currentColor);
+}
+
+.gpu-viz-flow {
+  color: var(--foreground);
 }
 
 .gpu-viz-border[data-active='true'] {
@@ -365,7 +376,7 @@ pre [data-theme*=' '] span {
   animation: gpu-viz-trace 0.8s linear;
 }
 .gpu-viz-head[data-active='true'] {
-  animation: gpu-viz-value 0.2s 0.6s both;
+  animation: gpu-viz-head 0.2s 0.6s both;
 }
 .gpu-viz-value {
   display: inline-block;
