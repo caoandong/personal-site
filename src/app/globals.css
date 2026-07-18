@@ -168,7 +168,7 @@ a:hover {
   margin-bottom: var(--spacing-h3-mb);
 }
 
-.prose p {
+.prose p:not(.not-prose *) {
   margin-top: var(--spacing-p-my);
   margin-bottom: var(--spacing-p-my);
   line-height: var(--line-height-body);
@@ -227,6 +227,11 @@ a:hover {
   border-radius: 0.25rem;
   font-size: var(--font-size-code);
   font-weight: 500;
+}
+
+.prose code:not(pre code)::before,
+.prose code:not(pre code)::after {
+  content: none;
 }
 
 /* Code block styling for rehype-pretty-code */
@@ -318,4 +323,57 @@ pre [data-theme*=' '] span {
   filter: none;
   transform: none;
   animation: none;
+}
+
+@keyframes gpu-viz-trace {
+  0% {
+    opacity: 0;
+    stroke-dashoffset: 0;
+  }
+  10%,
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    stroke-dashoffset: -1;
+  }
+}
+
+@keyframes gpu-viz-value {
+  from {
+    opacity: 0;
+    transform: translateY(0.25rem);
+  }
+}
+
+.gpu-viz-border,
+.gpu-viz-flow {
+  fill: none;
+  opacity: 0;
+  stroke: currentColor;
+  stroke-dasharray: 0.18 0.82;
+  stroke-linecap: round;
+  stroke-width: 1.5;
+  vector-effect: non-scaling-stroke;
+}
+
+.gpu-viz-border[data-active='true'] {
+  animation: gpu-viz-trace 1s linear;
+}
+.gpu-viz-flow[data-active='true'] {
+  animation: gpu-viz-trace 0.8s linear;
+}
+.gpu-viz-head[data-active='true'] {
+  animation: gpu-viz-value 0.2s 0.6s both;
+}
+.gpu-viz-value {
+  display: inline-block;
+  animation: gpu-viz-value 0.25s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gpu-viz * {
+    animation: none !important;
+  }
 }

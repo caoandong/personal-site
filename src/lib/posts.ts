@@ -6,6 +6,11 @@ export interface Post {
 
 export const posts: Post[] = [
   {
+    slug: 'building-a-gpu-from-first-principles',
+    title: 'Building a GPU from First Principles',
+    date: '2026-07-16',
+  },
+  {
     slug: 'building-pytorch-from-scratch',
     title: 'Building PyTorch From Scratch',
     date: '2026-06-21',
