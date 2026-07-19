@@ -24,7 +24,6 @@ export function GridVisualization() {
               <div key={index} className="border-border rounded-lg border p-4">
                 <div className="mb-4 flex items-baseline justify-between gap-3">
                   <p className="font-medium">Thread {index}</p>
-                  <code className="text-muted-foreground">i = {index}</code>
                 </div>
                 <div className="grid gap-1 font-mono">
                   <span>
