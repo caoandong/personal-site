@@ -14,10 +14,26 @@ __global__ void vector_add(const int* A, const int* B, int* C) {
     int i = threadIdx.x;
     C[i] = A[i] + B[i];
 }
+
+int main() {
+    // ... prepare the A, B, C array
+
+    vector_add<<<1, 2>>>(A, B, C); // run the instruction on 1 block and 2 threads
+
+    // ... wait until the process finishes and free the A, B, C array
+}
 ```
-Inside the GPU there's a bunch of workers called **threads** that executes the same instruction.
+
+Inside the GPU there's a bunch of **threads** that executes the same instruction in parallel.
 
 Each thread has its own `threadId` that allows us to index and divide the data so that each thread can work on difference pieces of the data in parallel.
+
+Inside the GPU there are multiple streaming multi-processors (**SM**s) that gets assigned each block; each SM has execution units that can process 
+
+concretely what happens: 
+1. data gets loaded into the global memory
+2. instructions are loaded into the global memory
+3. instructions are 
 
 The code above is compiled to assembly (SASS) code and submitted to the GPU:
 
@@ -42,12 +58,4 @@ The code above is compiled to assembly (SASS) code and submitted to the GPU:
 ```
 
 
-each instruction is one 32-bit word
-
-```
- 31            24 23    20 19    16 15    12 11               0
-┌────────────────┬────────┬────────┬────────┬──────────────────┐
-│     opcode     │   A    │   B    │   C    │  immediate       │
-│     8 bits     │ 4 bits │ 4 bits │ 4 bits │  12 bits         │
-└────────────────┴────────┴────────┴────────┴──────────────────┘
-```
+the instruction is loaded into
