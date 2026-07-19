@@ -7,21 +7,24 @@ const threads = [
 
 export function GridVisualization() {
   return (
-    <figure className="not-prose my-12 text-sm">
+    <figure className="not-prose my-12 text-sm [--block-inset:calc(1rem+1px)] [--grid-inset:calc(1rem+1px)] [--thread-radius:0.5rem] md:[--block-inset:calc(1.25rem+1px)] md:[--grid-inset:calc(1.5rem+1px)]">
       <figcaption className="sr-only">
         One CUDA grid containing one block with two threads. Each thread adds
         one pair of input values.
       </figcaption>
 
-      <div className="border-border relative rounded-2xl border p-4 pt-7 md:p-6 md:pt-8">
-        <BoundaryLabel>Grid</BoundaryLabel>
+      <div className="border-border relative rounded-[calc(var(--thread-radius)+var(--block-inset)+var(--grid-inset))] border p-4 md:p-6">
+        <BoundaryLabel>Grid 0</BoundaryLabel>
 
-        <div className="border-border relative rounded-xl border p-4 pt-7 md:p-5 md:pt-8">
+        <div className="border-border relative rounded-[calc(var(--thread-radius)+var(--block-inset))] border p-4 md:p-5">
           <BoundaryLabel>Block 0</BoundaryLabel>
 
           <div className="grid gap-3 md:grid-cols-2">
             {threads.map(({ index, a, b, result }) => (
-              <div key={index} className="border-border rounded-lg border p-4">
+              <div
+                key={index}
+                className="border-border rounded-[var(--thread-radius)] border p-5"
+              >
                 <div className="mb-4 flex items-baseline justify-between gap-3">
                   <p className="font-medium">Thread {index}</p>
                 </div>
@@ -45,7 +48,7 @@ export function GridVisualization() {
 
 function BoundaryLabel({ children }: { children: ReactNode }) {
   return (
-    <p className="bg-background text-muted-foreground absolute -top-2.5 left-4 px-2">
+    <p className="bg-background text-muted-foreground absolute -top-2.5 left-8 px-2">
       {children}
     </p>
   )

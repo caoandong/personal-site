@@ -29,14 +29,22 @@ The syntax `vector_add<<<1, 2>>>` divides the work into `1` block, and each bloc
 
 <GridVisualization />
 
-Each thread handles one piece of the work. Each thread has access to its `blockId` and `threadId` that tells it which piece to process.
+But this picture is just a mental model.
 
-Inside the GPU there are multiple streaming multi-processors (**SM**s) that gets assigned each block; each SM has execution units that can process 
+In reality, a GPU contains many streaming multiprocessors (**SM**s). 
 
-concretely what happens: 
-1. data gets loaded into the global memory
-2. instructions are loaded into the global memory
-3. instructions are 
+Each block runs on one SM. The SM executes threads in groups of 32, called **warps**. 
+
+A **warp scheduler** selects a ready warp and sends its next instruction to the execution units.
+
+The gpu also has a memory hierarchy to accelerate data access
+
+So concretely what happens: 
+1. Load data and instruction into the global memory
+
+2. warp scheduler selects a ready warp and fetches its instruction from the instruction cache
+
+3. 
 
 The code above is compiled to assembly (SASS) code and submitted to the GPU:
 
