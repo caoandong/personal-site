@@ -16,17 +16,19 @@ __global__ void vector_add(const int* A, const int* B, int* C) {
 }
 
 int main() {
-    // ... prepare the A, B, C array
+    // ... Allocate and initialize A, B, and C.
 
-    vector_add<<<1, 2>>>(A, B, C); // run the instruction on 1 block and 2 threads
+    vector_add<<<1, 2>>>(A, B, C); // Launch one block with two threads.
+    cudaDeviceSynchronize();
 
-    // ... wait until the process finishes and free the A, B, C array
+    // ... Read C and free the arrays.
 }
 ```
 
-Inside the GPU there's a bunch of **threads** that executes the same instruction in parallel.
+The syntax `vector_add<<<1, 2>>>` divides the work into `1` block, and each block contains `2` threads. In general we can use `<<<blockDim, threadDim>>>` syntax to launch `blockDim` blocks and `threadDim` threads.
 
-Each thread has its own `threadId` that allows us to index and divide the data so that each thread can work on difference pieces of the data in parallel.
+Each thread handles one piece of the work. Each thread has access to its `blockId` and `threadId` that tells it which piece to process.
+
 
 Inside the GPU there are multiple streaming multi-processors (**SM**s) that gets assigned each block; each SM has execution units that can process 
 
