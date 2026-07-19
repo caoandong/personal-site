@@ -13,7 +13,7 @@ export function GridVisualization() {
         one pair of input values.
       </figcaption>
 
-      <div className="border-border relative rounded-[calc(var(--thread-radius)+var(--block-inset)+var(--grid-inset))] border p-4 md:p-6">
+      <div className="border-border relative flex flex-row gap-6 rounded-[calc(var(--thread-radius)+var(--block-inset)+var(--grid-inset))] border p-4 md:p-6">
         <BoundaryLabel>Grid 0</BoundaryLabel>
 
         <div className="border-border relative rounded-[calc(var(--thread-radius)+var(--block-inset))] border p-4 md:p-5">
@@ -40,6 +40,9 @@ export function GridVisualization() {
               </div>
             ))}
           </div>
+        </div>
+        <div className="border-border relative flex-1 rounded-[calc(var(--thread-radius)+var(--block-inset))] border p-4 md:p-5">
+          <BoundaryLabel>Block 1</BoundaryLabel>
         </div>
       </div>
     </figure>

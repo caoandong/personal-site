@@ -1,5 +1,6 @@
 import { GpuHighLevelVisualization } from './gpu_visualization'
 import { GridVisualization } from './grid_visualization'
+import { SmVisualization } from './sm_visualization'
 
 # Building a GPU from First Principles
 
@@ -29,7 +30,7 @@ The syntax `vector_add<<<1, 2>>>` divides the work into `1` block, and each bloc
 
 <GridVisualization />
 
-But this picture is just a mental model.
+But this picture is just a mental model for CUDA.
 
 In reality, a GPU contains many streaming multiprocessors (**SM**s). 
 
@@ -37,14 +38,14 @@ Each block runs on one SM. The SM executes threads in groups of 32, called **war
 
 A **warp scheduler** selects a ready warp and sends its next instruction to the execution units.
 
+<SmVisualization />
+
 The gpu also has a memory hierarchy to accelerate data access
 
 So concretely what happens: 
 1. Load data and instruction into the global memory
 
 2. warp scheduler selects a ready warp and fetches its instruction from the instruction cache
-
-3. 
 
 The code above is compiled to assembly (SASS) code and submitted to the GPU:
 
