@@ -42,7 +42,6 @@ export function SmVisualization() {
                     Warp {warp}
                   </div>
                 ))}
-                <span className="text-muted-foreground">…</span>
               </div>
 
               <Connector phase="warp" />
