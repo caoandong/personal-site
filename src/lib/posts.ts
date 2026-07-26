@@ -6,6 +6,11 @@ export interface Post {
 
 export const posts: Post[] = [
   {
+    slug: 'automated-worldbuilding-with-ai',
+    title: 'Automated worldbuilding with AI',
+    date: '2026-07-25',
+  },
+  {
     slug: 'testing-code-latex-markdown',
     title: 'Testing code and latex with markdown',
     date: '2025-02-02',
