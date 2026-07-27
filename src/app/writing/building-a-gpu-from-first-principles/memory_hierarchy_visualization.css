@@ -1,0 +1,192 @@
+.memory-viz {
+  --memory-line: color-mix(in srgb, var(--foreground) 22%, transparent);
+  --memory-package: color-mix(in srgb, var(--foreground) 5%, transparent);
+  --memory-die: color-mix(in srgb, var(--foreground) 9%, transparent);
+  --memory-hbm: #9b6ad8;
+  --memory-l2: #a37add;
+  --memory-sm: #74a84f;
+  --memory-l1: #4f93b8;
+  --memory-shared: #d09a3c;
+  --memory-registers: #e06969;
+}
+
+.memory-viz-layout {
+  display: grid;
+  gap: 1rem;
+}
+.memory-viz-stage {
+  height: 22rem;
+  overflow: hidden;
+  border: 1px solid var(--memory-line);
+  border-radius: 0.75rem;
+  background: color-mix(in srgb, var(--muted) 55%, transparent);
+}
+.memory-viz-stage svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.memory-viz-package {
+  fill: var(--memory-package);
+  stroke: var(--memory-line);
+}
+.memory-viz-die {
+  fill: var(--memory-die);
+  stroke: var(--memory-line);
+}
+.memory-viz-hbm {
+  fill: var(--memory-hbm);
+}
+.memory-viz-l2 {
+  fill: var(--memory-l2);
+}
+.memory-viz-gpc > rect {
+  fill: color-mix(in srgb, var(--foreground) 4%, transparent);
+  stroke: var(--memory-line);
+}
+.memory-viz-sm {
+  fill: var(--memory-sm);
+}
+.memory-viz-l1 {
+  fill: var(--memory-l1);
+}
+.memory-viz-shared {
+  fill: var(--memory-shared);
+}
+.memory-viz-quadrant {
+  fill: color-mix(in srgb, var(--foreground) 14%, transparent);
+}
+.memory-viz-registers {
+  fill: var(--memory-registers);
+}
+.memory-viz-die-label {
+  fill: var(--foreground);
+  font-size: 18px;
+  font-weight: 600;
+}
+.memory-viz-sm-label,
+.memory-viz-register-label {
+  fill: var(--foreground);
+  font-size: 3px;
+  font-weight: 600;
+  opacity: 0;
+  transition: opacity 150ms ease;
+}
+
+.memory-viz-scene [data-layer],
+.memory-viz-gpcs {
+  transition:
+    opacity 180ms ease,
+    filter 180ms ease;
+}
+.memory-viz[data-active='global'] .memory-viz-l2 {
+  fill: color-mix(in srgb, var(--memory-l2) 38%, var(--muted));
+}
+.memory-viz[data-active='global'] .memory-viz-sm {
+  fill: color-mix(in srgb, var(--memory-sm) 38%, var(--muted));
+}
+.memory-viz[data-active='l2'] .memory-viz-hbm {
+  fill: color-mix(in srgb, var(--memory-hbm) 38%, var(--muted));
+}
+.memory-viz[data-active='l2'] .memory-viz-sm {
+  fill: color-mix(in srgb, var(--memory-sm) 38%, var(--muted));
+}
+.memory-viz[data-active='l1'] .memory-viz-hbm,
+.memory-viz[data-active='shared'] .memory-viz-hbm,
+.memory-viz[data-active='registers'] .memory-viz-hbm {
+  fill: color-mix(in srgb, var(--memory-hbm) 22%, var(--muted));
+}
+.memory-viz[data-active='l1'] .memory-viz-l2,
+.memory-viz[data-active='shared'] .memory-viz-l2,
+.memory-viz[data-active='registers'] .memory-viz-l2 {
+  fill: color-mix(in srgb, var(--memory-l2) 22%, var(--muted));
+}
+.memory-viz[data-active='l1'] .memory-viz-sm,
+.memory-viz[data-active='shared'] .memory-viz-sm,
+.memory-viz[data-active='registers'] .memory-viz-sm {
+  fill: color-mix(in srgb, var(--memory-sm) 38%, var(--muted));
+}
+.memory-viz[data-active='l1'] .memory-viz-shared,
+.memory-viz[data-active='shared'] .memory-viz-l1 {
+  fill: color-mix(in srgb, var(--memory-shared) 28%, var(--muted));
+}
+.memory-viz[data-active='shared'] .memory-viz-l1 {
+  fill: color-mix(in srgb, var(--memory-l1) 28%, var(--muted));
+}
+.memory-viz[data-active='registers'] :is(.memory-viz-l1, .memory-viz-shared) {
+  fill: color-mix(in srgb, var(--memory-l1) 28%, var(--muted));
+}
+.memory-viz[data-active='registers'] .memory-viz-shared {
+  fill: color-mix(in srgb, var(--memory-shared) 28%, var(--muted));
+}
+.memory-viz[data-active='global'] [data-layer='global'],
+.memory-viz[data-active='l2'] [data-layer='l2'],
+.memory-viz[data-active='l1'] [data-layer='l1'],
+.memory-viz[data-active='shared'] [data-layer='shared'],
+.memory-viz[data-active='registers'] [data-layer='registers'] {
+  filter: drop-shadow(
+    0 0 9px color-mix(in srgb, currentColor 72%, transparent)
+  );
+}
+.memory-viz[data-detail='sm'] .memory-viz-sm-label {
+  opacity: 1;
+}
+.memory-viz[data-detail='quadrant'] .memory-viz-register-label {
+  opacity: 1;
+  font-size: 1.8px;
+}
+
+.memory-viz-sidebar {
+  display: grid;
+  align-content: start;
+  gap: 0.75rem;
+}
+.memory-viz-layers {
+  display: grid;
+  gap: 0.35rem;
+}
+.memory-viz-layer {
+  width: 100%;
+  cursor: pointer;
+  border: 1px solid var(--memory-line);
+  border-radius: 0.4rem;
+  padding: 0.55rem 0.65rem;
+  color: var(--muted-foreground);
+  text-align: left;
+  transition:
+    background 180ms ease,
+    color 180ms ease;
+}
+.memory-viz-layer:hover,
+.memory-viz-layer[data-active='true'] {
+  background: var(--muted);
+  color: var(--foreground);
+}
+.memory-viz-description {
+  min-height: 4.75rem;
+  font-size: 0.8rem;
+  line-height: 1.45;
+}
+.memory-viz-description p {
+  margin: 0;
+}
+.memory-viz-description p + p {
+  margin-top: 0.25rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .memory-viz-scene [data-layer],
+  .memory-viz-gpcs,
+  .memory-viz-sm-label,
+  .memory-viz-register-label {
+    transition: none;
+  }
+}
+@media (min-width: 768px) {
+  .memory-viz-layout {
+    grid-template-columns: minmax(0, 4fr) minmax(10rem, 1fr);
+  }
+  .memory-viz-stage {
+    height: 27rem;
+  }
+}

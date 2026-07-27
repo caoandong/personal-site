@@ -1,12 +1,14 @@
 import { GpuHighLevelVisualization } from './gpu_visualization'
 import { GridVisualization } from './grid_visualization'
 import { SmVisualization } from './sm_visualization'
+import { MemoryHierarchyVisualization } from './memory_hierarchy_visualization'
 
 # Building a GPU from First Principles
 
 What is a GPU?
 
 At the most basic level, the GPU is a machine that executes instructions on data in parallel.
+
 <GpuHighLevelVisualization />
 
 For example, in the figure above, the GPU executes the following vector add operation on array `A` and `B` and saves the outputs to `C`.
@@ -32,15 +34,17 @@ The syntax `vector_add<<<1, 2>>>` divides the work into `1` block, and each bloc
 
 But this picture is just a mental model for CUDA.
 
-In reality, a GPU contains many streaming multiprocessors (**SM**s). 
+In reality, a GPU contains many streaming multiprocessors (**SM**s).
 
-Each block runs on one SM. The SM executes threads in groups of 32, called **warps**. 
+Each block runs on one SM. The SM executes threads in groups of 32, called **warps**.
 
 Every clock cycle, a **warp scheduler** selects a ready warp and sends its next instruction to the execution units.
 
 <SmVisualization />
 
-The gpu also has a memory hierarchy to accelerate data access
+The GPU also has a memory hierarchy to accelerate data access.
+
+<MemoryHierarchyVisualization />
 
 at first data is loaded into global memory, also known as device memory; this is a part of the memory that is off chip;
 think of it as the inventory warehouse seperated from the main factory (i.e. the processing units); it's large but it takes longer to reach
@@ -49,21 +53,20 @@ there is the L2 cache; it is the on-chip storage that sits between the global me
 
 there is the distributed shared memory; storage shared between a nearby group of SMs (known as the Graphical Processing Cluster); it enables SMs in a group to cooperate and share access to the same data;
 
-
 L1 cache + shared memory: on-chip storage private to a single SM;
+
     * L1 is auto-cached, shared across all blocks running on that SM
     * shared memory is program-managed, partitioned to each block so that only one block can access on region of shared memory
-
 
 Register file: the fastest storage private to individual threads
 
 So concretely what happens: 
+
 1. Load data and instruction into the global memory
 
-2. warp scheduler selects a ready warp and fetches its instruction from the instruction cache; on cache miss, it first checks whether the instruction is in 
+2. warp scheduler selects a ready warp and fetches its instruction from the instruction cache; on cache miss, it first checks whether the instruction is in
 
 The code above is compiled to assembly (SASS) code and submitted to the GPU:
-
 
 ```nvidia-sass
 .text.vector_add:
@@ -83,6 +86,5 @@ The code above is compiled to assembly (SASS) code and submitted to the GPU:
 
     EXIT ;
 ```
-
 
 the instruction is loaded into
