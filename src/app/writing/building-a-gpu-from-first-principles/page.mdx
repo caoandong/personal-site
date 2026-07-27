@@ -42,10 +42,25 @@ Every clock cycle, a **warp scheduler** selects a ready warp and sends its next 
 
 The gpu also has a memory hierarchy to accelerate data access
 
+at first data is loaded into global memory, also known as device memory; this is a part of the memory that is off chip;
+think of it as the inventory warehouse seperated from the main factory (i.e. the processing units); it's large but it takes longer to reach
+
+there is the L2 cache; it is the on-chip storage that sits between the global memory and the SMs; each SM has direct access to one partition of the L2 cache, and the SMs share the entire L2 cache via the GPU interconnect link (known as the Crossbar);
+
+there is the distributed shared memory; storage shared between a nearby group of SMs (known as the Graphical Processing Cluster); it enables SMs in a group to cooperate and share access to the same data;
+
+
+L1 cache + shared memory: on-chip storage private to a single SM;
+    * L1 is auto-cached, shared across all blocks running on that SM
+    * shared memory is program-managed, partitioned to each block so that only one block can access on region of shared memory
+
+
+Register file: the fastest storage private to individual threads
+
 So concretely what happens: 
 1. Load data and instruction into the global memory
 
-2. warp scheduler selects a ready warp and fetches its instruction from the instruction cache
+2. warp scheduler selects a ready warp and fetches its instruction from the instruction cache; on cache miss, it first checks whether the instruction is in 
 
 The code above is compiled to assembly (SASS) code and submitted to the GPU:
 
