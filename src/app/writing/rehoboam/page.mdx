@@ -1,0 +1,26 @@
+# Building a world model for the internet
+
+goal: train a model to predict the future
+
+problems:
+look ahead bias
+
+no way to accurately playback historical events
+
+solution:
+build the simulation of the world so that we can train RL agents
+
+how:
+
+world model is a function that maps from (current state, current action) to (next state)
+
+collect trajectories for various actions
+collect the subsequent state; this becomes a decision tree
+train the model from the state and action pairs
+
+the issue here is that the real world is very noisy
+we want to generate the model in a way that builds a latent causal model of the underlying mechanics
+so after obtaining the decision tree and all the data we need to backtrack and analyze what really drove the event;
+
+what were the things that really mattered and the confounding noises
+validate the underlying data-generating process; sort of like data-augmentation

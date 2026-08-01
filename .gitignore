@@ -23,6 +23,7 @@
 # misc
 .DS_Store
 *.pem
+/src/app/writing/continual-learning-01/data/
 
 # debug
 npm-debug.log*
