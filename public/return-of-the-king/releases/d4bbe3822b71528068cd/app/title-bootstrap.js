@@ -146,6 +146,11 @@
   const play = document.getElementById('title-play');
   const status = document.getElementById('arrival-status');
   const clip = document.getElementById('arrival-film');
+  // Reserve the first media bytes before the much larger motion and lighting fetches start.
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches && !navigator.connection?.saveData) {
+    clip.preload = 'auto';
+    clip.src = './assets/arrival/approach.mp4';
+  }
   let startGame;
   let queued = false;
   let failed = false;
@@ -166,9 +171,8 @@
     if (queued) return;
     queued = true;
     body.classList.add('arrival-queued');
-    if (!matchMedia('(prefers-reduced-motion: reduce)').matches && !navigator.connection?.saveData) {
+    if (clip.getAttribute('src')) {
       clip.addEventListener('playing', () => clip.classList.add('playing'), { once: true });
-      clip.src = './assets/arrival/approach.mp4';
       clip.play().catch(() => {}); // The courtyard still is the reduced-motion and low-data fallback.
     }
   }
