@@ -1,0 +1,1 @@
+{"levels":[{"id":"monolith","titleMusic":{"path":"assets/music/before-the-doors.m4a","bpm":111.4,"loopStart":4.31,"loopEnd":38.78},"architecture":"blender/scene_spec.json","lighting":"assets/level_manifest.json","simulation":"assets/level_sim.json","cutscenes":"assets/cutscenes.json"}]}
