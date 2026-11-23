@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <base href="/return-of-the-king/releases/d4bbe3822b71528068cd/">
+  <link rel="preload" as="script" href="./app/title-bootstrap.js">
+  <link rel="preload" as="image" href="./assets/arrival/portrait.webp" fetchpriority="high">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Return of the King</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%23161E21'/%3E%3Crect x='11' y='6' width='10' height='20' fill='%2346DE26'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="./app/style.css" />
+
+</head>
+<body data-mode="showcase">
+  
+  <!-- Full-Viewport Real-Time WebGL Canvas -->
+  <canvas id="viewport" tabindex="0"></canvas>
+
+  <div id="arrival-stage" aria-hidden="true"><video id="arrival-film" muted loop playsinline preload="none"></video></div>
+  <section id="story-title" aria-labelledby="story-title-name" hidden>
+    <div class="title-inner">
+      <h1 id="story-title-name">Return of the King</h1>
+      <div class="title-actions">
+        <button aria-describedby="title-audio-hint" id="title-play" type="button">RECLAIM THE BOARDROOM</button>
+        <button id="title-sound" type="button" hidden>Enable sound</button>
+      </div>
+      <p id="title-audio-hint" hidden>Tap the portrait or press M for sound.</p>
+      <p id="arrival-location">Monolith HQ · Arrival courtyard</p>
+      <p id="arrival-status" role="status">Opening the courtyard…</p>
+    </div>
+  </section>
+  <audio id="arrival-score" preload="auto" src="./assets/music/before-the-doors.m4a"></audio><script src="./app/title-bootstrap.js" data-track="./assets/music/before-the-doors.m4a" data-loop-start="4.31" data-loop-end="38.78"></script>
+
+  <button id="btn-mode-play" type="button" hidden>Play</button>
+  <aside id="story-objective" aria-label="Current objective" hidden>
+    <strong id="hero-name"></strong><span id="hero-objective" role="status"></span>
+  </aside>
+  <div id="boss-bars" role="group" aria-label="Boss health" hidden></div>
+  <div id="game-bars" hidden>
+    <label for="hero-health">Health</label>
+    <meter id="hero-health" min="0" value="0"></meter>
+    <label for="hero-stamina">Stamina</label>
+    <meter id="hero-stamina" min="0" max="100" value="100"></meter>
+  </div>
+  <div id="encounter-hud">
+    <div id="action-prompt" role="status" hidden>
+      <kbd id="action-prompt-key"></kbd><span id="action-prompt-text"></span>
+    </div>
+    <div id="game-subtitle" role="status" hidden><strong id="subtitle-speaker"></strong><span id="subtitle-line"></span></div>
+  </div>
+  <template id="boss-bar-template">
+    <label class="boss-bar">
+      <span class="boss-name"></span>
+      <span class="boss-track"><meter min="0"></meter></span>
+    </label>
+  </template>
+  <div class="cinema-bar upper"></div><div class="cinema-bar lower"></div>
+  <div id="skip-scene" hidden>Skipping</div>
+  <div id="death-vignette" aria-hidden="true" hidden></div>
+  <section id="game-menu" role="dialog" aria-modal="true" aria-labelledby="game-menu-title" hidden>
+    <div><h1 id="game-menu-title"></h1><p id="game-menu-detail"></p>
+      <dl id="victory-stats" aria-label="Fight statistics" hidden>
+        <div><dt>Fight score</dt><dd id="victory-score"></dd></div>
+        <div><dt>Health left</dt><dd id="victory-health"></dd></div>
+        <div><dt>Retries</dt><dd id="victory-retries"></dd></div>
+      </dl>
+      <progress id="game-loading-progress" aria-label="Loading fighters" hidden></progress>
+      <div id="game-controls" hidden>
+        <details><summary>Controls</summary><dl></dl></details>
+        <details><summary>Cast</summary><ul id="story-cast"></ul></details>
+        <label>Volume <input id="game-volume" type="range" min="0" max="1" step=".05" value=".7"></label>
+        <button id="game-mute" type="button" aria-pressed="false">Mute</button>
+      </div>
+      <footer><button id="resume-game" type="button">Resume</button><button id="retry-zone" type="button">Retry zone</button><button id="restart-game" type="button">New run</button><button id="reload-game" type="button">Reload</button></footer>
+    </div>
+  </section>
+  <!-- Minimal Sterile Architectural Loading Veil -->
+  <div id="loading-veil">
+    <div class="load-title">Return of the King</div>
+    <div class="load-bar"><div id="load-bar-fill" class="load-bar-fill"></div></div>
+    <div id="load-sub" class="load-sub"></div>
+  </div>
+
+  <script defer src="./app/bundle.js"></script>
+</body>
+</html>

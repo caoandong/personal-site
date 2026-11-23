@@ -78,9 +78,26 @@ def import_game(source):
         inline = re.findall(r"<script>(.*?)</script>", html, re.S)
         if len(inline) != 1 or html.count("<head>") != 1:
             raise ValueError("Inspect the updated game bootstrap before publishing")
-        (stage / "app/title-bootstrap.js").write_text(inline[0])
-        html = html.replace("<script>" + inline[0] + "</script>", '<script src="./app/title-bootstrap.js"></script>')
-        html = html.replace("<head>", f'<head>\n  <base href="{BASE}{PLACEHOLDER}/">')
+        # One small parser-blocking script binds sound and Play together before the engine.
+        bootstrap = stage / "app/title-bootstrap.js"
+        pieces = [stage / "app/title-audio.js", stage / "app/arrival.js"]
+        bootstrap.write_text("\n;".join([inline[0], *(part.read_text() for part in pieces)]))
+        for part in pieces:
+            part.unlink()
+        html = html.replace("<script>" + inline[0] + "</script>", "")
+        campaign = json.loads((stage / "assets/campaigns.json").read_text())["levels"][0]
+        cue = campaign["titleMusic"]
+        end = html.index("</section>", html.index('<section id="story-title"')) + len("</section>")
+        audio = (
+            f'<audio id="arrival-score" preload="auto" src="./{cue["path"]}"></audio>'
+            f'<script src="./app/title-bootstrap.js" data-track="./{cue["path"]}" '
+            f'data-loop-start="{cue["loopStart"]}" data-loop-end="{cue["loopEnd"]}"></script>'
+        )
+        html = html[:end] + "\n  " + audio + html[end:]
+        html = html.replace("<head>", f'''<head>
+  <base href="{BASE}{PLACEHOLDER}/">
+  <link rel="preload" as="script" href="./app/title-bootstrap.js">
+  <link rel="preload" as="image" href="./assets/arrival/portrait.webp" fetchpriority="high">''')
         index.write_text(html)
         sha = digest(stage)
         release = sha[:20]
