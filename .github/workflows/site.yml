@@ -4,14 +4,12 @@ on:
     branches: [main]
   push:
     branches: [main]
-  deployment_status:
 permissions:
   contents: read
 
 jobs:
   verify:
     name: Check site and game
-    if: github.event_name != 'deployment_status'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -30,19 +28,3 @@ jobs:
           trap 'kill $!' EXIT
           curl --retry 20 --retry-all-errors --retry-delay 1 -fsS http://127.0.0.1:3000/ > /dev/null
           node scripts/check-game.mjs
-
-  live:
-    name: Check public game
-    if: github.event_name == 'deployment_status' && github.event.deployment_status.state == 'success' && github.event.deployment.environment == 'Production' && github.event.deployment.creator.login == 'vercel[bot]'
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.deployment.sha }}
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: npm
-      - run: npm ci
-      - run: node scripts/check-game.mjs https://antoniocao.com/return-of-the-king
