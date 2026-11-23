@@ -47,6 +47,13 @@ export default function Home() {
           </h1>
         </div>
 
+        <a
+          href="/return-of-the-king"
+          className={cn(typography({ variant: 'body' }), hoverTextColors.default, 'underline underline-offset-4')}
+        >
+          Play Return of the King
+        </a>
+
         <section className="pt-12">
           <div className="mb-6 flex items-baseline justify-between">
             <h2
