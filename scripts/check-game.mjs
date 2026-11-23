@@ -46,62 +46,38 @@ try {
     if (url.pathname.includes('/assets/music/')) music.add(url.pathname)
   })
   await page.addInitScript(() => {
-    // Read the signal sent to the speakers without changing the game mixer.
-    const connect = AudioNode.prototype.connect
-    AudioNode.prototype.connect = function (destination, ...ports) {
-      if (this.context instanceof AudioContext && destination === this.context.destination) {
-        window.gameOutput = this.context.createAnalyser()
-        connect.call(this, window.gameOutput)
-      }
-      return connect.call(this, destination, ...ports)
-    }
+    window.playedTitleCues = []
+    window.addEventListener('monolith:titlecue', event => window.playedTitleCues.push(event.detail))
     window.gameCspViolations = []
     document.addEventListener('securitypolicyviolation', event => {
       window.gameCspViolations.push([event.effectiveDirective, event.blockedURI])
     })
   })
-  await page.goto(base.href, { waitUntil: 'domcontentloaded', timeout: 90000 })
-  // Poll with no synthetic user gesture until the real first interaction below.
-  const session = await page.context().newCDPSession(page)
-  const started = Date.now()
-  while (true) {
-    const { result } = await session.send('Runtime.evaluate', {
-      userGesture: false, returnByValue: true,
-      expression: `!document.querySelector('#story-title')?.hidden && !!window.__MONOLITH_GAME__`,
-    })
-    if (result.value) break
-    assert.ok(Date.now() - started < 150000, 'Title did not open')
-    await new Promise(resolve => setTimeout(resolve, 250))
-  }
-  const { result } = await session.send('Runtime.evaluate', {
-    userGesture: false,
-    returnByValue: true,
-    expression: `(() => {
-      const audio = window.__MONOLITH_GAME__.audio
-      const cue = audio.cue
-      window.playedTitleCues = []
-      audio.cue = (...args) => {
-        const played = cue(...args)
-        if (played) window.playedTitleCues.push(args[0])
-        return played
-      }
-      return [document.title, audio.state().state, !document.getElementById('title-audio-hint').hidden]
-    })()`,
-  })
-  assert.deepEqual(result.value, ['Return of the King', 'suspended', true])
-  await page.keyboard.press('m')
+  // Hold the largest engine dependency. Both music and the opening shot must work without it.
+  let releaseMotion
+  const held = new Promise(resolve => { releaseMotion = resolve })
+  await page.route('**/pack.bin.zst', async route => { await held; await route.continue() })
+  await page.goto(base.href, { waitUntil: 'commit', timeout: 90000 })
+  await page.locator('#title-sound:visible').waitFor({ timeout: 30000 })
+  await page.locator('#title-sound').click()
   await page.waitForFunction(() => {
-    const track = window.__VOYAGER__.app.campaign.titleMusic.path
-    if (window.__MONOLITH_GAME__.audio.musicTime(track) < 2) return false
-    const samples = new Float32Array(window.gameOutput.fftSize)
-    window.gameOutput.getFloatTimeDomainData(samples)
+    const audio = window.monolithTitleAudio
+    if (audio?.media.currentTime < 1 || !audio) return false
+    if (!window.titleMeter) {
+      window.titleMeter = audio.context.createAnalyser()
+      audio.output.connect(window.titleMeter)
+    }
+    const samples = new Float32Array(window.titleMeter.fftSize)
+    window.titleMeter.getFloatTimeDomainData(samples)
     return samples.some(value => Math.abs(value) > 0.01)
   }, null, { timeout: 45000 })
-  assert.equal(await page.locator('#title-audio-hint').isHidden(), true)
-  assert.equal(await page.locator('#story-title').isVisible(), true)
+  assert.equal(await page.locator('#title-sound').isHidden(), true)
   await page.locator('#title-play').hover()
-  await page.locator('#title-play').click({ timeout: 150000 })
-  await page.waitForFunction(() => window.__VOYAGER__?.getState().game?.ready, null, { timeout: 180000 })
+  await page.locator('#title-play').click()
+  await page.waitForFunction(() => document.getElementById('arrival-film').currentTime > 0.2)
+  assert.equal(await page.evaluate(() => !!window.__VOYAGER__), false)
+  releaseMotion()
+  await page.waitForFunction(() => window.__VOYAGER__?.getState().game?.scene === 'CS-01', null, { timeout: 180000 })
   const opening = await page.evaluate(() => {
     const app = window.__VOYAGER__.app
     return {
@@ -150,6 +126,7 @@ try {
   assert.ok(await page.evaluate(id => window.__MONOLITH_GAME__.startScene(id), later.id))
   await page.waitForFunction(track => window.__MONOLITH_GAME__.audio.musicTime(track) > 0, later.music, { timeout: 90000 })
   assert.deepEqual(await page.evaluate(() => window.gameCspViolations), [])
+  await page.waitForFunction(() => window.__VOYAGER__.app.lightingDetail === 'full', null, { timeout: 120000 })
   assert.deepEqual(errors, [])
   console.log(JSON.stringify({ url: res.url, release, titleCues, opening, combat, musicFiles: openingMusicFiles, laterMusic: later.id, workers: workers.length }))
 } finally {

@@ -42,3 +42,11 @@ The website serves the game at `/return-of-the-king`. The website commit pins a 
 To update the game, export its optimized HTTP distribution from the game source tree. Run `python3 scripts/import-game.py /path/to/dist` with Python 3 and FFmpeg installed. The importer creates AAC delivery copies, checks their durations, prepares the game HTML for its subpath and writes an immutable release directory and pin. Keep the preceding release directory available for players who already opened the game.
 
 Open a website PR with the new directory and `game/release.json`. CI verifies the digest, lints, builds and plays through the opening in Chrome, then exercises a later scene's deferred score. Vercel deploys the merged website. The production deployment event runs the same browser check on the public game. To roll back only the game, restore the preceding release pin in a PR while retaining both directories.
+
+### Game startup and verification
+
+The initial page presents the in-game portrait and binds Play and sound before the 3D engine downloads. In a new browser, Enable sound starts the streamed title score. Play immediately opens a short courtyard approach while the movement pack downloads. Reduced-motion and data-saver sessions use its first frame. Download progress comes from the movement response body. The game starts as soon as its opening assets are ready and refines the baked lighting after the first render.
+
+The web packer lives in the game's `experiments/nvidia-sifu-level/scripts/web-release/tools/build.ts`. Build the current portable inputs first, then run the web packer with Bun, passing the game directory and a Pillow-enabled Python interpreter. Import its `web-release/dist` output with the website importer. The shipped bundle includes its own workers, UI sounds, preview lighting, title portrait and courtyard film.
+
+The browser check deliberately holds the movement download until it has observed a non-silent title soundtrack and an advancing opening movie. It then releases the response and verifies the handoff to CS-01, combat, full-resolution lighting, and deferred music.
